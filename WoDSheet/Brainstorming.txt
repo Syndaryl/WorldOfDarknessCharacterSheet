@@ -1,0 +1,33 @@
+﻿GUI Builder
+
+Takes in a WoDCharacter, returns a pile of components ready for display.
+
+-> CharacterGUI
+       Root flow, arranged vertically.
+       Banner image if extant, title label if not.
+       Then pack child TraitGroupGUIs vertically.
+-> TraitGroupGUI
+       Custom Control - An optional label over a FlowLayoutPanel.
+       FlowLayoutPanel arranged horizontally if TraitGroups, vertically if traits. (configurable? Those are definitely the defaults)
+       TraitGroup.Name = the label, centered at top.
+       Each child TraitGroup becomes its own column under the Name, number of columns = number of TraitGroup
+             OR
+       Each child Trait is packed vertically under the Name, left aligned spanning entire column width.
+       What if both TraitGroup and Traits? Traits first, then TraitGroup? Pack vertically as default? Ordering property, to go with FlowOrientation property. Solves this.
+-> TraitGUI
+       Implement a factory, pass in Trait (or trait child), receive panel with controls already set up.
+       Factory iterates through which Interfaces are implemented. For each implemented, pack new control and register update handler with the data model.
+       Special case, if the buttons AND checkboxes are implemented, return a button/checkbox control
+       Special case, wound level control.
+
+       ***** TraitGroup - probably should have /either/ TraitGroups /or/ Traits, not both. Hrm.
+       ***** Need WoundLevel trait.
+
+
+
+public static int SingleCast(object obj) {
+       Foo foo = obj as Foo; // This is how to test for if it is an object or fulfils a template
+       if (foo != null)      // conveniently, it also does a null safety check!
+             return foo.Length;
+       return -1;
+}
