@@ -17,8 +17,69 @@ namespace Games.RPG.WoDCharacterData
             SetupAttributes(Char);
             SetupAbilities(Char);
             SetupAdvantages(Char);
+            SetupWerewolfTraits(Char);
 
             return Char;
+        }
+        private static void SetupWerewolfTraits(WoDCharacter Char) {
+            TraitGroup Abilities = new TraitGroup(
+                Name: "Traits",
+                ColumnLabels: new List<string>(),
+                Children: new List<Trait>(),
+                ChildGroups: new List<TraitGroup>
+                {
+                    new TraitGroup( // Reknown and Rank
+                        Name: "",
+                        ChildGroups: new List<TraitGroup>{
+                            new TraitGroup(
+                                Name: "Reknown",
+                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                                    new NamedRatingWithTempValue(Name: "Glory", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
+                                    new NamedRatingWithTempValue(Name: "Honor", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
+                                    new NamedRatingWithTempValue(Name: "Wisdom", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
+                                }
+                            ),
+                            new TraitGroup(
+                                Name: "Rank",
+                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                                    new TextTrait(),
+                                }
+                            ),
+                        }, ColumnLabels: new List<string>(), Children: new List<Trait>()
+                    ),
+                    new TraitGroup( // Rage Gnosis Willpower
+                        Name: "",
+                        ChildGroups: new List<TraitGroup>{}, ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NamedRatingWithTempValue(Name: "Rage", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
+                            new NamedRatingWithTempValue(Name: "Gnosis", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
+                            new NamedRatingWithTempValue(Name: "Willpower", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
+                        }
+                    ),
+                    new TraitGroup(
+                        Name: "", // Health and XP
+                        ChildGroups: new List<TraitGroup>{
+                            new TraitGroup(
+                                Name: "Health",
+                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                                    new WoundRating("Bruised",0),
+                                    new WoundRating("Hurt",-1),
+                                    new WoundRating("Injured",-1),
+                                    new WoundRating("Wounded",-2),
+                                    new WoundRating("Mauled",-2),
+                                    new WoundRating("Crippled",-5),
+                                    new WoundRating("Incapacitated",0),
+                                }
+                            ),
+                            new TraitGroup(
+                                Name: "Experience",
+                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                                    new TextTrait(),
+                                }
+                            ),
+                        }, ColumnLabels: new List<string>(), Children: new List<Trait>()
+                    )
+                });
+            Char.TraitGroups.Add(Abilities);
         }
 
         private static void SetupAdvantages(WoDCharacter Char) {

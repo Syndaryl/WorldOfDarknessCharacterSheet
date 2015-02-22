@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace Games.RPG.WoDCharacterData
 {
-    [XmlInclude(typeof(NamedText)), XmlInclude(typeof(NameTextRating)), XmlInclude(typeof(RatingWithTempValue))]
+    [XmlInclude(typeof(NamedText)), XmlInclude(typeof(NameTextRating)), XmlInclude(typeof(NamedRatingWithTempValue))]
     public abstract class Trait
     {
     }
@@ -137,20 +137,27 @@ namespace Games.RPG.WoDCharacterData
     }
 
 
-    public class RatingWithTempValue : Trait, INamedTrait, IRatingTrait, ITemporaryValueTrait
+    public class NamedRatingWithTempValue : Trait, INamedTrait, IRatingTrait, ITemporaryValueTrait
     {
-        public RatingWithTempValue() : base()
+        public NamedRatingWithTempValue() : base()
         {
             this.Name = string.Empty;
             this.Rating = new BoundedInt();
             this.TemporaryValue = new BoundedInt();
         }
-        public RatingWithTempValue(BoundedInt Rating, BoundedInt Temporary, string Name="")
+        public NamedRatingWithTempValue(BoundedInt Rating, BoundedInt Temporary, string Name="")
             : base()
         {
             this.Name = Name;
             this.Rating = Rating;
             this.TemporaryValue = Temporary;
+        }
+
+        public NamedRatingWithTempValue(string Name, int Rating, int Temporary, int Minimum, int Maximum) {
+            // TODO: Complete member initialization
+            this.Name = Name;
+            this.Rating = new BoundedInt(Rating, Minimum, Maximum);
+            this.TemporaryValue = new BoundedInt(Temporary, Minimum, Maximum);
         }
 
         [XmlAttribute("Name")]
