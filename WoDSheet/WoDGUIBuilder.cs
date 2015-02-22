@@ -51,12 +51,15 @@ namespace Games.RPG.WoDSheet
             AddLabel(group.Name, ChildItems, true);
             if (group.ChildGroups.Count > 0)
             {
-                MakeChildPanels(group, ChildItems);
+                FlowLayoutPanel ChildHolder = MakeChildPanels(group, ChildItems);
+                ChildHolder.Width = ChildHolder.PreferredSize.Width;
+                ChildHolder.Height = ChildHolder.PreferredSize.Height;
             }
             else
             {
                 MakeChildTraits(group, ChildItems);
             }
+            ChildItems.Height = ChildItems.PreferredSize.Height;
 
             ChildItems.ResumeLayout();
             return ChildItems;
@@ -65,12 +68,12 @@ namespace Games.RPG.WoDSheet
         {
             //FlowLayoutPanel ChildItems = NewFlowPanel(parent, (int) (parent.Width/group.ChildGroups.Count));
 
-
             FlowLayoutPanel ChildItems;
             ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0?(int)(parent.Width / group.ChildGroups.Count):parent.Width);
             ChildItems.SuspendLayout();
 
             AddLabel(group.Name, ChildItems, true);
+
             if ( group.ChildGroups.Count > 0)
             {
                 MakeChildPanels(group, ChildItems);
@@ -79,6 +82,7 @@ namespace Games.RPG.WoDSheet
             {
                 MakeChildTraits(group, ChildItems);
             }
+            ChildItems.Height = ChildItems.PreferredSize.Height;
 
             ChildItems.ResumeLayout();
             return ChildItems;
@@ -133,7 +137,7 @@ namespace Games.RPG.WoDSheet
             slider.Size = new Size(width, slider.PreferredHeight);
         }
 
-        private static void MakeChildPanels(TraitGroup group, FlowLayoutPanel parent)
+        private static FlowLayoutPanel MakeChildPanels(TraitGroup group, FlowLayoutPanel parent)
         {
             parent.FlowDirection = FlowDirection.TopDown;
             FlowLayoutPanel ChildItems;
@@ -147,10 +151,11 @@ namespace Games.RPG.WoDSheet
             foreach (TraitGroup item in group.ChildGroups)
             {
                 FlowLayoutPanel p = MakeSection(item, ChildItems);
-                //p.Width = p.PreferredSize.Width;
             }
 
             ChildItems.ResumeLayout();
+
+            return ChildItems;
         }
 
         private static void AddLabel(string text, Panel location, bool bold=false, int width = 0)
