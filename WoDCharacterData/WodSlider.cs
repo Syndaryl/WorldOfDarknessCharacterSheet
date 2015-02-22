@@ -18,25 +18,27 @@ namespace Games.RPG.WoDSheet
         {
             get
             {
-                preferredHeight = 0;
-                foreach (System.Windows.Forms.Control item in this.Flow.Controls)
-                {
-                    preferredHeight = Math.Max(preferredHeight,(item.Height));
-                }
-                preferredHeight += 10;
-                return preferredHeight;
+                //preferredHeight = 0;
+                //foreach (System.Windows.Forms.Control item in this.Flow.Controls)
+                //{
+                //    preferredHeight = Math.Max(preferredHeight,(item.Height));
+                //}
+                //preferredHeight += 10;
+                //return preferredHeight;
+                return this.Flow.PreferredSize.Height;
             }
         }
         public int PreferredWidth
         {
             get
             {
-                preferredWidth = 0;
-                foreach (System.Windows.Forms.Control item in this.Flow.Controls)
-                {
-                    preferredWidth += item.Width;
-                }
-                return preferredWidth;
+                //preferredWidth = 0;
+                //foreach (System.Windows.Forms.Control item in this.Flow.Controls)
+                //{
+                //    preferredWidth += item.Width;
+                //}
+                //return preferredWidth;
+                return this.Flow.PreferredSize.Width;
             }
         }
 
@@ -51,10 +53,15 @@ namespace Games.RPG.WoDSheet
             InitializeComponent();
             labelTrait.Text = LabelText;
             textBoxSpecialty.Text = SpecialtyText;
-            trackBarScore.Minimum = Rating.Min;
-            trackBarScore.Maximum = Rating.Max;
-            trackBarScore.Value = Rating.Value;
-            labelValue.Text = trackBarScore.Value.ToString();
+            UpdateTrackbar();
+        }
+
+        private void UpdateTrackbar()
+        {
+            trackBarScore.Minimum = this.Rating.Min;
+            trackBarScore.Maximum = this.Rating.Max;
+            trackBarScore.Value = this.Rating.Value;
+            labelValue.Text = this.Rating.Value.ToString();
         }
 
         private void trackBarScore_Scroll(object sender, EventArgs e)

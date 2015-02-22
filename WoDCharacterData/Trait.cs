@@ -95,6 +95,14 @@ namespace Games.RPG.WoDCharacterData
             this.Rating = new BoundedInt(Rating);
         }
 
+        public NameTextRating(string Name, string Text, int Rating, int Minimum, int Maximum)
+        {
+            // TODO: Complete member initialization
+            this.Name = Name;
+            this.Text = Text;
+            this.Rating = new BoundedInt (Rating, Minimum: Minimum, Maximum: Maximum);
+        }
+
         [XmlAttribute("Name")]
         public string Name { get; set; }
 

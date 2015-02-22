@@ -46,8 +46,10 @@ namespace Games.RPG.WoDCharacterData
 
         int max = 5;
 
-        public BoundedInt(int Rating)
+        public BoundedInt(int Rating, int Minimum=1, int Maximum = 5)
         {
+            this.Min = Minimum;
+            this.Max = Maximum;
             this.Value = Rating;
         }
 
