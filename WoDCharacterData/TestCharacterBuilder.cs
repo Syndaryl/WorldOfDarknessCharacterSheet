@@ -13,69 +13,59 @@ namespace Games.RPG.WoDCharacterData
             Char.Name = "Werewolf: The Apocalypse";
             Char.Graphic = @"D:\Documents\Visual Studio 2013\Projects\WoDSheet\img\Werewolf_The_Apocalypse.png";
 
-            TraitGroup Background = new TraitGroup(Name: string.Empty, ColumnLabels: new List<string>(), Children: new List<Trait>(), 
-                ChildGroups: new List<TraitGroup>
-                {
-                    new TraitGroup(
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NamedText(Name: "Name", Text: "Test Character"),
-                            new NamedText(Name: "Player", Text: "Emily"),
-                            new NamedText(Name: "Chronicle", Text: "Test Chronicle"),
-                        }
-                    ),
-                    new TraitGroup(
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NamedText(Name: "Breed", Text: "Homid"),
-                            new NamedText(Name: "Auspice", Text: "Ahroun"),
-                            new NamedText(Name: "Tribe", Text: "Get of Fenris"),
-                        }
-                    ),
-                    new TraitGroup(
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NamedText(Name: "Pack Name", Text: "Some Guys"),
-                            new NamedText(Name: "Pack Totem", Text: "Volcano"),
-                            new NamedText(Name: "Concept", Text: "Unstable!")
-                        }
-                    )
-                }
-            );
+            SetupCharacterConcept(Char);
+            SetupAttributes(Char);
+            SetupAbilities(Char);
+            SetupAdvantages(Char);
 
-            Char.TraitGroups.Add(Background);
+            return Char;
+        }
 
-            TraitGroup Attributes = new TraitGroup(
-                Name: "Attributes", 
+        private static void SetupAdvantages(WoDCharacter Char) {
+            TraitGroup Advantages = new TraitGroup(
+                Name: "Advantages",
                 ColumnLabels: new List<string>(),
+                SpanColumns: 3,
                 Children: new List<Trait>(),
                 ChildGroups: new List<TraitGroup>
                 {
                     new TraitGroup(
-                        Name: "Physical",
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4),
-                            new NameTextRating(Name: "Dexterity", Text: string.Empty, Rating: 2),
-                            new NameTextRating(Name: "Stamina", Text: string.Empty, Rating: 3)
+                        Name: "Backgrounds",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:1, Children: new List<Trait>{
+                        new TextRating(),
+                        new TextRating(),
+                        new TextRating(),
+                        new TextRating(),
+                        new TextRating(),
+                        }),
+                        
+                    new TraitGroup(
+                        Name: "Gifts",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:1, Children: new List<Trait>{
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
                         }
                     ),
+                        
                     new TraitGroup(
-                        Name: "Social",
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Charisma", Text: string.Empty, Rating: 3),
-                            new NameTextRating(Name: "Manipulation", Text: string.Empty, Rating: 2),
-                            new NameTextRating(Name: "Appearance", Text: string.Empty, Rating: 1)
+                        Name: "Gifts",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:1, Children: new List<Trait>{
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
+                        new TextTrait(),
                         }
                     ),
-                    new TraitGroup(
-                        Name: "Mental",
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Perception", Text: string.Empty, Rating: 4),
-                            new NameTextRating(Name: "Intelligence", Text: string.Empty, Rating: 1),
-                            new NameTextRating(Name: "Wits", Text: string.Empty, Rating: 3)
-                        }
-                    )
                 }
-            );
-            Char.TraitGroups.Add(Attributes);
+                );
+            Char.TraitGroups.Add(Advantages);
+        }
 
+        private static void SetupAbilities(WoDCharacter Char) {
             TraitGroup Abilities = new TraitGroup(
                 Name: "Abilities",
                 ColumnLabels: new List<string>(),
@@ -129,43 +119,73 @@ namespace Games.RPG.WoDCharacterData
                     )
                 });
             Char.TraitGroups.Add(Abilities);
+        }
 
-            TraitGroup BackgroundsGifts = new TraitGroup(
-                Name: "",
+        private static void SetupAttributes(WoDCharacter Char) {
+            TraitGroup Attributes = new TraitGroup(
+                Name: "Attributes",
                 ColumnLabels: new List<string>(),
-                SpanColumns: 3,
                 Children: new List<Trait>(),
                 ChildGroups: new List<TraitGroup>
                 {
                     new TraitGroup(
-                        Name: "Backgrounds",
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:1, Children: new List<Trait>{
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
-                        }),
-                        
-                    new TraitGroup(
-                        Name: "Gifts",
-                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:2, Children: new List<Trait>{
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
-                        new TextTrait(),
+                        Name: "Physical",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4),
+                            new NameTextRating(Name: "Dexterity", Text: string.Empty, Rating: 2),
+                            new NameTextRating(Name: "Stamina", Text: string.Empty, Rating: 3)
                         }
                     ),
+                    new TraitGroup(
+                        Name: "Social",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NameTextRating(Name: "Charisma", Text: string.Empty, Rating: 3),
+                            new NameTextRating(Name: "Manipulation", Text: string.Empty, Rating: 2),
+                            new NameTextRating(Name: "Appearance", Text: string.Empty, Rating: 1)
+                        }
+                    ),
+                    new TraitGroup(
+                        Name: "Mental",
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NameTextRating(Name: "Perception", Text: string.Empty, Rating: 4),
+                            new NameTextRating(Name: "Intelligence", Text: string.Empty, Rating: 1),
+                            new NameTextRating(Name: "Wits", Text: string.Empty, Rating: 3)
+                        }
+                    )
                 }
-                );
-            Char.TraitGroups.Add(BackgroundsGifts);
-            return Char;
+            );
+            Char.TraitGroups.Add(Attributes);
+        }
+
+        private static void SetupCharacterConcept(WoDCharacter Char) {
+            TraitGroup Background = new TraitGroup(Name: string.Empty, ColumnLabels: new List<string>(), Children: new List<Trait>(),
+                ChildGroups: new List<TraitGroup>
+                {
+                    new TraitGroup(
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NamedText(Name: "Name", Text: "Test Character"),
+                            new NamedText(Name: "Player", Text: "Emily"),
+                            new NamedText(Name: "Chronicle", Text: "Test Chronicle"),
+                        }
+                    ),
+                    new TraitGroup(
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NamedText(Name: "Breed", Text: "Homid"),
+                            new NamedText(Name: "Auspice", Text: "Ahroun"),
+                            new NamedText(Name: "Tribe", Text: "Get of Fenris"),
+                        }
+                    ),
+                    new TraitGroup(
+                        ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                            new NamedText(Name: "Pack Name", Text: "Some Guys"),
+                            new NamedText(Name: "Pack Totem", Text: "Volcano"),
+                            new NamedText(Name: "Concept", Text: "Unstable!")
+                        }
+                    )
+                }
+            );
+
+            Char.TraitGroups.Add(Background);
         }
     }
 }
