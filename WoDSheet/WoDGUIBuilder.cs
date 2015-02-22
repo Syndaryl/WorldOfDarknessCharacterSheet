@@ -106,7 +106,24 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
-            throw new NotImplementedException();
+            FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+            Label Name = AddLabel(namedText.Name, holder, true);
+            int TextWidth = holder.Width - 10;
+            if (Name != null) {
+                Name.AutoSize = true;
+                TextWidth = TextWidth - Name.Width;
+            }
+            TextBox Text = MakeTextBox(namedText.Text, holder, TextWidth);
+            Text.TextChanged += namedText.Text_TextChanged;
+        }
+
+        private static TextBox MakeTextBox(string namedText, FlowLayoutPanel holder, int TextWidth) {
+            TextBox Text = new TextBox();
+            holder.Controls.Add(Text);
+            Text.Text = namedText;
+            Text.Width = TextWidth;
+            Text.Anchor = AnchorStyles.Right;
+            return Text;
         }
 
         private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
@@ -140,9 +157,9 @@ namespace Games.RPG.WoDSheet {
             return ChildItems;
         }
 
-        private static void AddLabel(string text, Panel location, bool bold = false, int width = 0) {
+        private static Label AddLabel(string text, Panel location, bool bold = false, int width = 0) {
             if (text == null || text == string.Empty || text.Equals(""))
-                return; // short circuit.
+                return null; // short circuit.
             try {
                 Label formLabel = new Label();
                 //formLabel.AutoSize = true;
@@ -159,9 +176,11 @@ namespace Games.RPG.WoDSheet {
                 if (width == 0)
                     width = (int)(location.Size.Width - 10);
                 formLabel.Size = new Size(width, formLabel.PreferredHeight);
+                return formLabel;
                 //formLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
             } catch (Exception LabelCreationException) {
                 MessageBox.Show(LabelCreationException.ToString());
+                return null;
             }
         }
 
@@ -182,7 +201,8 @@ namespace Games.RPG.WoDSheet {
 
                 displayForm.Controls.Add(formLabel);
             } catch (Exception LabelCreationException) {
-
+                System.Windows.Forms.MessageBox.Show(LabelCreationException.ToString());
+                MessageBox.Show(LabelCreationException.ToString());
             }
         }
 
@@ -190,7 +210,7 @@ namespace Games.RPG.WoDSheet {
             try {
                 AddLabel(Character.Name, result, true);
             } catch (Exception LabelCreationException) {
-
+                MessageBox.Show(LabelCreationException.ToString());
             }
         }
 
@@ -212,6 +232,7 @@ namespace Games.RPG.WoDSheet {
                 //Banner.Dock = DockStyle.Fill;
                 Banner.BorderStyle = BorderStyle.Fixed3D;
             } catch (Exception ImageCreationException) {
+                System.Windows.Forms.MessageBox.Show(ImageCreationException.ToString());
                 AddName(Character, result);
             }
         }

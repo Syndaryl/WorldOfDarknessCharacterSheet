@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace Games.RPG.WoDCharacterData
@@ -25,6 +26,10 @@ namespace Games.RPG.WoDCharacterData
             this.Text = Text;
         }
 
+        public void Text_TextChanged(object sender, EventArgs e) {
+            this.Text = ((TextBox)sender).Text;
+        }
+
         [XmlText()]
         //[XmlElement("TextTrait")]
         //[XmlAttribute("TextTrait")]
@@ -44,6 +49,10 @@ namespace Games.RPG.WoDCharacterData
         {
             this.Name = Name;
             this.Text = Text;
+        }
+
+        public void Text_TextChanged(object sender, EventArgs e) {
+            this.Text = ((TextBox)sender).Text;
         }
         
         [XmlAttribute("Name")]
@@ -69,6 +78,10 @@ namespace Games.RPG.WoDCharacterData
         {
             this.Text = Text;
             this.Rating = new BoundedInt(Rating);
+        }
+
+        public void Text_TextChanged(object sender, EventArgs e) {
+            this.Text = ((TextBox)sender).Text;
         }
 
         //[XmlText()]
@@ -115,6 +128,10 @@ namespace Games.RPG.WoDCharacterData
 
 
 
+
+        public void Text_TextChanged(object sender, EventArgs e) {
+            this.Text = ((TextBox)sender).Text;
+        }
         public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e)
         {
             Text = e.TraitText;

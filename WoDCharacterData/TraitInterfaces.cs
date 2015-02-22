@@ -14,6 +14,8 @@ namespace Games.RPG.WoDCharacterData
     public interface ITextTrait
     {
         string Text { get; set; }
+
+        void Text_TextChanged(object sender, EventArgs e);
     }
     public interface ITemporaryValueTrait
     {
