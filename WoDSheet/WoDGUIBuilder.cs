@@ -25,9 +25,10 @@ namespace Games.RPG.WoDSheet
 
             foreach (TraitGroup item in Character.TraitGroups)
             {
-                FlowLayoutPanel p = MakePrimarySection(item, root);
-                p.AutoSize = false;
-                p.Size = p.PreferredSize;
+                FlowLayoutPanel p = MakeSection(item, root);
+                //p.AutoSize = false;
+                
+                //p.Size = p.PreferredSize;
             }
 
             root.ResumeLayout();
@@ -44,22 +45,33 @@ namespace Games.RPG.WoDSheet
             displayForm.Refresh();
         }
 
-        private static FlowLayoutPanel MakePrimarySection(TraitGroup group, Panel location)
+        private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent)
         {
-            FlowLayoutPanel flow = NewFlowPanel(location, location.Width);
+            //FlowLayoutPanel ChildItems = NewFlowPanel(parent, (int) (parent.Width/group.ChildGroups.Count));
 
-            AddLabel(group.Name, flow, true);
+
+            FlowLayoutPanel ChildItems;
+            try
+            {
+                ChildItems = NewFlowPanel(parent, (int)(parent.Width / group.ChildGroups.Count));
+            }
+            catch (DivideByZeroException e)
+            {
+                ChildItems = NewFlowPanel(parent, parent.Width);
+            }
+
+            AddLabel(group.Name, ChildItems, true);
             if ( group.ChildGroups.Count > 0)
             {
-                MakeChildPanels(group, flow);
+                MakeChildPanels(group, ChildItems);
             }
             else
             {
-                MakeChildTraits(group, flow);
+                MakeChildTraits(group, ChildItems);
             }
 
-            flow.ResumeLayout();
-            return flow;
+            ChildItems.ResumeLayout();
+            return ChildItems;
         }
 
         private static FlowLayoutPanel NewFlowPanel(Panel location, int width)
@@ -68,10 +80,11 @@ namespace Games.RPG.WoDSheet
             flow.SuspendLayout();
             location.Controls.Add(flow);
             flow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            //flow.Width = (int)(location.Size.Width - 10);
-            flow.Width = width - 10;
+            //parent.Width = (int)(parent.Size.Width - 10);
+            flow.Width = width - 20;
+            flow.Padding = new System.Windows.Forms.Padding(10);
             flow.AutoScroll = true;
-            //flow.AutoSize = true;
+            //parent.AutoSize = true;
             flow.AutoScroll = true;
             flow.WrapContents = false;
             return flow;
@@ -86,7 +99,7 @@ namespace Games.RPG.WoDSheet
                 //{
                 //    try
                 //    {
-                //        AddTextSlider(location, item);
+                //        AddTextSlider(parent, item);
                 //    }
                 //    catch (Exception WoDSliderCreationException)
                 //    {
@@ -109,13 +122,20 @@ namespace Games.RPG.WoDSheet
             slider.Size = new Size(width, slider.PreferredHeight);
         }
 
-        private static void MakeChildPanels(TraitGroup group, FlowLayoutPanel flow)
+        private static void MakeChildPanels(TraitGroup group, FlowLayoutPanel parent)
         {
-            flow.FlowDirection = FlowDirection.TopDown;
-
-            FlowLayoutPanel ChildItems = NewFlowPanel(flow, (int) (flow.Width/group.ChildGroups.Count));
+            parent.FlowDirection = FlowDirection.TopDown;
+            FlowLayoutPanel ChildItems;
+            try
+            {
+                ChildItems = NewFlowPanel(parent, (int)(parent.Width / group.ChildGroups.Count));
+            }
+            catch (DivideByZeroException e)
+            {
+                ChildItems = NewFlowPanel(parent, parent.Width);
+            }
             //ChildItems.AutoSize = false;
-            ChildItems.Width = (int)(flow.Size.Width - 10);
+            //ChildItems.Width = (int)(parent.Size.Width - 10);
             ChildItems.SuspendLayout();
 
             FlowDirection direction;
@@ -124,8 +144,8 @@ namespace Games.RPG.WoDSheet
 
             foreach (TraitGroup item in group.ChildGroups)
             {
-                FlowLayoutPanel p = MakePrimarySection(item, ChildItems);
-                p.Width = p.PreferredSize.Width;
+                FlowLayoutPanel p = MakeSection(item, ChildItems);
+                //p.Width = p.PreferredSize.Width;
             }
 
             ChildItems.ResumeLayout();
@@ -145,9 +165,9 @@ namespace Games.RPG.WoDSheet
                 formLabel.Tag = 0;
                 formLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                 formLabel.Padding = new Padding(10);
-                //Font newfont = (Font) location.Font.Clone();
+                //Font newfont = (Font) parent.Font.Clone();
                 //newfont.Bold = bold;
-                //formLabel.Font = (Font)location.Font.Clone();
+                //formLabel.Font = (Font)parent.Font.Clone();
                 formLabel.Font = new Font(location.Font.FontFamily, location.Font.Size, bold? FontStyle.Bold:FontStyle.Regular);
                 if (width == 0)
                     width = (int)(location.Size.Width - 10);
