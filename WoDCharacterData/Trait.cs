@@ -171,4 +171,30 @@ namespace Games.RPG.WoDCharacterData
         }
     }
 
+    public class WoundRating : Trait, INamedTrait {
+        public WoundRating() : base(){}
+        public WoundRating(string Name, int WoundPenalty=0, WoundStates WoundState = WoundStates.Unwounded) { this.Name = Name; this.WoundPenalty = WoundPenalty; this.WoundState = WoundState; }
+
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("WoundPenalty")]
+        public int WoundPenalty {
+            get;
+            set {
+                if (value > 0) {
+                    value = 0;
+                }
+            }
+        }
+
+        [XmlElement("WoundState")]
+        public WoundStates WoundState {
+            get;
+            set;
+        }
+    }
+
+    public enum WoundStates { Unwounded=0, Bashing, Lethal, Aggravated };
+
 }
