@@ -25,10 +25,7 @@ namespace Games.RPG.WoDSheet
 
             foreach (TraitGroup item in Character.TraitGroups)
             {
-                FlowLayoutPanel p = MakeSection(item, root);
-                //p.AutoSize = false;
-                
-                //p.Size = p.PreferredSize;
+                FlowLayoutPanel p = MakePrimarySection(item, root);
             }
 
             root.ResumeLayout();
@@ -45,20 +42,33 @@ namespace Games.RPG.WoDSheet
             displayForm.Refresh();
         }
 
+        private static FlowLayoutPanel MakePrimarySection(TraitGroup group, Panel parent)
+        {
+            FlowLayoutPanel ChildItems;
+            ChildItems = NewFlowPanel(parent, parent.Width);
+            ChildItems.SuspendLayout();
+
+            AddLabel(group.Name, ChildItems, true);
+            if (group.ChildGroups.Count > 0)
+            {
+                MakeChildPanels(group, ChildItems);
+            }
+            else
+            {
+                MakeChildTraits(group, ChildItems);
+            }
+
+            ChildItems.ResumeLayout();
+            return ChildItems;
+        }
         private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent)
         {
             //FlowLayoutPanel ChildItems = NewFlowPanel(parent, (int) (parent.Width/group.ChildGroups.Count));
 
 
             FlowLayoutPanel ChildItems;
-            try
-            {
-                ChildItems = NewFlowPanel(parent, (int)(parent.Width / group.ChildGroups.Count));
-            }
-            catch (DivideByZeroException e)
-            {
-                ChildItems = NewFlowPanel(parent, parent.Width);
-            }
+            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0?(int)(parent.Width / group.ChildGroups.Count):parent.Width);
+            ChildItems.SuspendLayout();
 
             AddLabel(group.Name, ChildItems, true);
             if ( group.ChildGroups.Count > 0)
@@ -81,12 +91,13 @@ namespace Games.RPG.WoDSheet
             location.Controls.Add(flow);
             flow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             //parent.Width = (int)(parent.Size.Width - 10);
-            flow.Width = width - 20;
+            flow.Width = width - 10;
             flow.Padding = new System.Windows.Forms.Padding(10);
             flow.AutoScroll = true;
             //parent.AutoSize = true;
             flow.AutoScroll = true;
             flow.WrapContents = false;
+            flow.ResumeLayout();
             return flow;
         }
 
@@ -126,16 +137,7 @@ namespace Games.RPG.WoDSheet
         {
             parent.FlowDirection = FlowDirection.TopDown;
             FlowLayoutPanel ChildItems;
-            try
-            {
-                ChildItems = NewFlowPanel(parent, (int)(parent.Width / group.ChildGroups.Count));
-            }
-            catch (DivideByZeroException e)
-            {
-                ChildItems = NewFlowPanel(parent, parent.Width);
-            }
-            //ChildItems.AutoSize = false;
-            //ChildItems.Width = (int)(parent.Size.Width - 10);
+            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
             ChildItems.SuspendLayout();
 
             FlowDirection direction;
