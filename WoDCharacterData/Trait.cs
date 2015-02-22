@@ -187,13 +187,17 @@ namespace Games.RPG.WoDCharacterData
 
         [XmlAttribute("WoundPenalty")]
         public int WoundPenalty {
-            get;
+            get {
+                return woundPenalty;
+            }
             set {
                 if (value > 0) {
                     value = 0;
+                    woundPenalty = value;
                 }
             }
         }
+        private int woundPenalty = 0;
 
         [XmlElement("WoundState")]
         public WoundStates WoundState {

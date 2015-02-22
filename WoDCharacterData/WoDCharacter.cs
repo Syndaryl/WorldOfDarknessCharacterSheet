@@ -68,12 +68,13 @@ namespace Games.RPG.WoDCharacterData
                     }
                     catch(Exception e)
                     {
+                        System.Windows.Forms.MessageBox.Show(e.ToString());
                         return string.Empty;
                     }
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
+                System.Windows.Forms.MessageBox.Show(e.ToString());
                 return string.Empty;
             }
         }
@@ -86,8 +87,8 @@ namespace Games.RPG.WoDCharacterData
                 var serializer = new XmlSerializer(typeof(WoDCharacter));
                 return serializer.Deserialize(stream) as WoDCharacter;
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
+                    System.Windows.Forms.MessageBox.Show(e.ToString());
                     return new WoDCharacter();
                 }
             }

@@ -35,6 +35,7 @@ namespace Games.RPG.WoDSheet
             }
             catch (Exception OpeningException)
             {
+                MessageBox.Show(OpeningException.ToString());
                 Character = null;
                 StatusLabel.Text = "Failed to open " + file;
             }
@@ -63,8 +64,8 @@ namespace Games.RPG.WoDSheet
                 WoDGUIBuilder.Build(Character, WodFlowRoot);
                 StatusLabel.Text = "Opened standard character";
             }
-            catch (Exception OpeningException)
-            {
+            catch (Exception OpeningException) {
+                System.Windows.Forms.MessageBox.Show(OpeningException.ToString());
                 Character = null;
                 StatusLabel.Text = "Failed to open standard character!?!?";
             }
