@@ -64,16 +64,16 @@ namespace Games.RPG.WoDCharacterData
         public string Text { get; set; }
     }
 
-    public class TextRating : Trait, ITextTrait, IRatingTrait
+    public class UnnamedTextRating : Trait, ITextTrait, IRatingTrait
     {
-        public TextRating()
+        public UnnamedTextRating()
             : base()
         {
             Text = string.Empty;
             BoundedInt Rating = new BoundedInt();
         }
 
-        public TextRating(string Text, int Rating)
+        public UnnamedTextRating(string Text, int Rating)
             : base()
         {
             this.Text = Text;
@@ -84,6 +84,10 @@ namespace Games.RPG.WoDCharacterData
             this.Text = ((TextBox)sender).Text;
         }
 
+        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e) {
+            Text = e.TraitText;
+            Rating.Value = e.Value;
+        }
         //[XmlText()]
         [XmlElement("Text")]
         public string Text { get; set; }
@@ -175,6 +179,10 @@ namespace Games.RPG.WoDCharacterData
             this.Name = Name;
             this.Rating = new BoundedInt(Rating, Minimum, Maximum);
             this.TemporaryValue = new BoundedInt(Temporary, Minimum, Maximum);
+        }
+        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e) {
+            //Text = e.TraitText;
+            Rating.Value = e.Value;
         }
 
         [XmlAttribute("Name")]

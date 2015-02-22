@@ -55,6 +55,12 @@
     <Compile Include="WodSlider.Designer.cs">
       <DependentUpon>WodSlider.cs</DependentUpon>
     </Compile>
+    <Compile Include="WoDWoundCheckboxButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WoDWoundCheckboxButton.Designer.cs">
+      <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StringWriterWithEncoding\StringWriterWithEncoding.csproj">
@@ -65,6 +71,9 @@
   <ItemGroup>
     <EmbeddedResource Include="WodSlider.resx">
       <DependentUpon>WodSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoDWoundCheckboxButton.resx">
+      <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

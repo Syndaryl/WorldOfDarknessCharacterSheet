@@ -93,11 +93,11 @@ namespace Games.RPG.WoDCharacterData
                     new TraitGroup(
                         Name: "Backgrounds",
                         ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), SpanColumns:1, Children: new List<Trait>{
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
-                        new TextRating(),
+                        new UnnamedTextRating(),
+                        new UnnamedTextRating(),
+                        new UnnamedTextRating(),
+                        new UnnamedTextRating(),
+                        new UnnamedTextRating(),
                         }),
                         
                     new TraitGroup(

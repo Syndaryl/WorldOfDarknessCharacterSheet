@@ -115,13 +115,12 @@ namespace Games.RPG.WoDSheet
             get { return text; }
             set { text = value; }
         }
-        #endregion Properties
 
-        public int Value
-        {
+        public int Value {
             get { return tvalue; }
             set { tvalue = value; }
         }
+        #endregion Properties
     }
 
 }

@@ -107,9 +107,14 @@ namespace Games.RPG.WoDSheet {
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
             FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+            holder.BorderStyle = BorderStyle.None;
+            holder.Padding = new Padding(0);
             Label Name = AddLabel(namedText.Name, holder, true);
-            int TextWidth = holder.Width - 10;
+            int TextWidth = holder.Width - 20;
             if (Name != null) {
+                Name.Padding = new Padding(0);
+                Name.BorderStyle = BorderStyle.None;
+                Name.TextAlign = ContentAlignment.MiddleLeft;
                 Name.AutoSize = true;
                 TextWidth = TextWidth - Name.Width;
             }
@@ -127,7 +132,23 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
-            throw new NotImplementedException();
+            FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+            holder.BorderStyle = BorderStyle.None;
+            holder.Padding = new Padding(0);
+
+            Label Name = AddLabel(woundRating.Name, holder, false);
+            if (Name != null) {
+                Name.Padding = new Padding(0);
+                Name.BorderStyle = BorderStyle.None;
+                Name.TextAlign = ContentAlignment.MiddleLeft;
+                Name.AutoSize = true;
+            }
+            Label Penalty = AddLabel(woundRating.WoundPenalty.ToString(), holder, false);
+            if (Penalty != null) {
+                Penalty.Padding = new Padding(0);
+                Penalty.BorderStyle = BorderStyle.None;
+                Penalty.AutoSize = true;
+            }
         }
 
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
