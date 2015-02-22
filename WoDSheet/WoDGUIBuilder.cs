@@ -46,7 +46,7 @@ namespace Games.RPG.WoDSheet
 
         private static FlowLayoutPanel MakePrimarySection(TraitGroup group, Panel location)
         {
-            FlowLayoutPanel flow = NewFlowPanel(location);
+            FlowLayoutPanel flow = NewFlowPanel(location, location.Width);
 
             AddLabel(group.Name, flow, true);
             if ( group.ChildGroups.Count > 0)
@@ -62,15 +62,16 @@ namespace Games.RPG.WoDSheet
             return flow;
         }
 
-        private static FlowLayoutPanel NewFlowPanel(Panel location)
+        private static FlowLayoutPanel NewFlowPanel(Panel location, int width)
         {
             FlowLayoutPanel flow = new FlowLayoutPanel();
             flow.SuspendLayout();
             location.Controls.Add(flow);
             flow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            //location.Width = (int)(location.Size.Width - 10);
+            //flow.Width = (int)(location.Size.Width - 10);
+            flow.Width = width - 10;
             flow.AutoScroll = true;
-            flow.AutoSize = true;
+            //flow.AutoSize = true;
             flow.AutoScroll = true;
             flow.WrapContents = false;
             return flow;
@@ -81,19 +82,20 @@ namespace Games.RPG.WoDSheet
             location.FlowDirection = FlowDirection.TopDown;
             foreach (Trait item in group.Children)
             {
-                if (TestType < NameTextRating>(item) > -1)
-                {
-                    try
-                    {
-                        AddTextSlider(location, item);
-                    }
-                    catch (Exception WoDSliderCreationException)
-                    {
-                        MessageBox.Show(WoDSliderCreationException.ToString());
-                    }
+                //if (TestType < NameTextRating>(item) > -1)
+                //{
+                //    try
+                //    {
+                //        AddTextSlider(location, item);
+                //    }
+                //    catch (Exception WoDSliderCreationException)
+                //    {
+                //        MessageBox.Show(WoDSliderCreationException.ToString());
+                //    }
 
-                }
-                else if (TestType<INamedTrait>(item) > -1)
+                //}
+                //else 
+                    if (TestType<INamedTrait>(item) > -1)
                     AddLabel(((INamedTrait)item).Name, location, false);
             }
         }
@@ -111,7 +113,7 @@ namespace Games.RPG.WoDSheet
         {
             flow.FlowDirection = FlowDirection.TopDown;
 
-            FlowLayoutPanel ChildItems = NewFlowPanel(flow);
+            FlowLayoutPanel ChildItems = NewFlowPanel(flow, (int) (flow.Width/group.ChildGroups.Count));
             //ChildItems.AutoSize = false;
             ChildItems.Width = (int)(flow.Size.Width - 10);
             ChildItems.SuspendLayout();
