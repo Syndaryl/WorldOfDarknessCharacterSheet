@@ -107,9 +107,10 @@ namespace Games.RPG.WoDCharacterData
 
 
 
-        static void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e)
+        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e)
         {
-            throw new NotImplementedException();
+            Text = e.TraitText;
+            Rating.Value = e.Value;
         }
     }
 
