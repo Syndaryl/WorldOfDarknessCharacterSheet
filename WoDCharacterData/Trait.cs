@@ -104,6 +104,13 @@ namespace Games.RPG.WoDCharacterData
 
         [XmlElement("Rating")]
         public BoundedInt Rating { get; set; }
+
+
+
+        static void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class NamedTempValue : Trait, INamedTrait, ITemporaryValueTrait

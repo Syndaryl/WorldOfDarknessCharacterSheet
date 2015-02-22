@@ -54,6 +54,7 @@ namespace Games.RPG.WoDSheet
             trackBarScore.Value = Rating.Value;
             trackBarScore.Minimum = Rating.Min;
             trackBarScore.Maximum = Rating.Max;
+            labelValue.Text = trackBarScore.Value.ToString();
         }
 
         private void trackBarScore_Scroll(object sender, EventArgs e)

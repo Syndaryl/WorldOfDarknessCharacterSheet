@@ -66,8 +66,6 @@ namespace Games.RPG.WoDSheet
         }
         private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent)
         {
-            //FlowLayoutPanel ChildItems = NewFlowPanel(parent, (int) (parent.Width/group.ChildGroups.Count));
-
             FlowLayoutPanel ChildItems;
             ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0?(int)(parent.Width / group.ChildGroups.Count):parent.Width);
             ChildItems.SuspendLayout();
@@ -110,20 +108,19 @@ namespace Games.RPG.WoDSheet
             location.FlowDirection = FlowDirection.TopDown;
             foreach (Trait item in group.Children)
             {
-                //if (TestType < NameTextRating>(item) > -1)
-                //{
-                //    try
-                //    {
-                //        AddTextSlider(parent, item);
-                //    }
-                //    catch (Exception WoDSliderCreationException)
-                //    {
-                //        MessageBox.Show(WoDSliderCreationException.ToString());
-                //    }
+                if (TestType<NameTextRating>(item) > -1)
+                {
+                    try
+                    {
+                        AddTextSlider(location, item);
+                    }
+                    catch (Exception WoDSliderCreationException)
+                    {
+                        MessageBox.Show(WoDSliderCreationException.ToString());
+                    }
 
-                //}
-                //else 
-                    if (TestType<INamedTrait>(item) > -1)
+                }
+                else if (TestType<INamedTrait>(item) > -1)
                     AddLabel(((INamedTrait)item).Name, location, false);
             }
         }
@@ -132,6 +129,7 @@ namespace Games.RPG.WoDSheet
         {
             NameTextRating itemCasted = (NameTextRating)item;
             WodSlider slider = new WodSlider(LabelText: itemCasted.Name, SpecialtyText: itemCasted.Text, Rating: itemCasted.Rating);
+            slider.Update += itemCasted.slider_Update;
             location.Controls.Add(slider);
             int width = (int)(location.Size.Width - 10);
             slider.Size = new Size(width, slider.PreferredHeight);
