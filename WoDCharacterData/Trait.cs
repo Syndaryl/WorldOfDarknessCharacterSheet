@@ -224,7 +224,12 @@ namespace Games.RPG.WoDCharacterData
         }
         private int woundPenalty = 0;
 
-        [XmlElement("WoundState")]
+        public void Wound_Update(object sender, WoundStateChangeEventArgs e) {
+            this.WoundState = e.WoundState;
+        }
+
+
+        [XmlElement("Wound")]
         public WoundStates WoundState {
             get;
             set;

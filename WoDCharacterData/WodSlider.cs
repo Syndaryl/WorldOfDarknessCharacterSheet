@@ -81,10 +81,10 @@ namespace Games.RPG.WoDSheet
         }
 
         #region Events
-        public event EventHandler<NameTextRatingEventArgs> Update;
+        public event EventHandler<NameTextRatingEventArgs> OnChecked;
         private void RaiseUpdate(int value, string specialty)
         {
-            EventHandler<NameTextRatingEventArgs> handler = Update;
+            EventHandler<NameTextRatingEventArgs> handler = OnChecked;
             if (handler != null)
             {
                 handler(null, new NameTextRatingEventArgs(value, specialty));

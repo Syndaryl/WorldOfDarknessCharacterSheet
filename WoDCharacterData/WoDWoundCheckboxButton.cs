@@ -34,9 +34,9 @@ namespace Games.RPG.WoDCharacterData {
         }
 
         #region Events
-        public event EventHandler<WoundStateChangeEventArgs> Update;
+        public event EventHandler<WoundStateChangeEventArgs> WoundUpdate;
         private void RaiseUpdate(WoundStates State) {
-            EventHandler<WoundStateChangeEventArgs> handler = Update;
+            EventHandler<WoundStateChangeEventArgs> handler = WoundUpdate;
             if (handler != null) {
                 handler(null, new WoundStateChangeEventArgs(State));
             }

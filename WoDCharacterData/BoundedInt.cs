@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 namespace Games.RPG.WoDCharacterData
 {
+
     public class BoundedInt
     {
         private int value = 1;
@@ -46,6 +47,15 @@ namespace Games.RPG.WoDCharacterData
 
         int max = 5;
 
+        public static implicit operator int(BoundedInt d)  // implicit BoundedInt to int conversion operator
+        {
+            return d.Value;  // implicit conversion
+        }
+        public static implicit operator BoundedInt(int d)  // implicit BoundedInt to int conversion operator
+        {
+            return new BoundedInt(d);  // implicit conversion
+        }
+
         public BoundedInt(int Rating, int Minimum=1, int Maximum = 5)
         {
             this.Min = Minimum;
@@ -73,4 +83,5 @@ namespace Games.RPG.WoDCharacterData
             }
         }
     }
+
 }

@@ -30,7 +30,7 @@ namespace Games.RPG.WoDCharacterData
                 {
                     new TraitGroup( // Reknown and Rank
                         Name: "",
-                        ChildGroups: new List<TraitGroup>{
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{
                             new TraitGroup(
                                 Name: "Reknown",
                                 ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
@@ -49,7 +49,7 @@ namespace Games.RPG.WoDCharacterData
                     ),
                     new TraitGroup( // Rage Gnosis Willpower
                         Name: "",
-                        ChildGroups: new List<TraitGroup>{}, ColumnLabels: new List<string>(), Children: new List<Trait>{
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{}, ColumnLabels: new List<string>(), Children: new List<Trait>{
                             new NamedRatingWithTempValue(Name: "Rage", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
                             new NamedRatingWithTempValue(Name: "Gnosis", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
                             new NamedRatingWithTempValue(Name: "Willpower", Rating: 0, Temporary: 0, Minimum: 1, Maximum: 10 ),
@@ -57,7 +57,7 @@ namespace Games.RPG.WoDCharacterData
                     ),
                     new TraitGroup(
                         Name: "", // Health and XP
-                        ChildGroups: new List<TraitGroup>{
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{
                             new TraitGroup(
                                 Name: "Health",
                                 ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{

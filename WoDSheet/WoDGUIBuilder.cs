@@ -58,7 +58,12 @@ namespace Games.RPG.WoDSheet {
         }
         private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent) {
             FlowLayoutPanel ChildItems;
-            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            FlowDirection direction;
+            Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
+
+            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight|| direction == FlowDirection.RightToLeft ) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+
+            ChildItems.FlowDirection = direction;
             ChildItems.SuspendLayout();
 
             AddLabel(group.Name, ChildItems, true);
@@ -98,8 +103,8 @@ namespace Games.RPG.WoDSheet {
                     try { AddTextSlider(location, (NameTextRating)item); } catch (Exception WoDSliderCreationException) { MessageBox.Show(WoDSliderCreationException.ToString()); }
                 else if (TestType<NamedText>(item) > -1)
                     try { AddNamedText(location, (NamedText)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
-                else if (TestType<WoundRating>(item) > -1)
-                    try { AddWoundRating(location, (WoundRating)item); } catch (Exception WoDWoundLevelCreationException) { MessageBox.Show(WoDWoundLevelCreationException.ToString()); }
+                //else if (TestType<WoundRating>(item) > -1)
+                //    try { AddWoundRating(location, (WoundRating)item); } catch (Exception WoDWoundLevelCreationException) { MessageBox.Show(WoDWoundLevelCreationException.ToString()); }
                 else if (TestType<INamedTrait>(item) > -1)
                     AddLabel(((INamedTrait)item).Name, location, false);
             }
@@ -107,6 +112,7 @@ namespace Games.RPG.WoDSheet {
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
             FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+            //holder.SuspendLayout();
             holder.BorderStyle = BorderStyle.None;
             holder.Padding = new Padding(0);
             Label Name = AddLabel(namedText.Name, holder, true);
@@ -119,7 +125,12 @@ namespace Games.RPG.WoDSheet {
                 TextWidth = TextWidth - Name.Width;
             }
             TextBox Text = MakeTextBox(namedText.Text, holder, TextWidth);
-            Text.TextChanged += namedText.Text_TextChanged;
+            if (Name != null && Text != null)
+                Name.Height = Text.Height;
+            holder.Height = holder.PreferredSize.Height;
+            //holder.ResumeLayout();
+            if (Text != null)
+                Text.TextChanged += namedText.Text_TextChanged;
         }
 
         private static TextBox MakeTextBox(string namedText, FlowLayoutPanel holder, int TextWidth) {
@@ -133,8 +144,11 @@ namespace Games.RPG.WoDSheet {
 
         private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
             FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+
+            holder.SuspendLayout();
             holder.BorderStyle = BorderStyle.None;
             holder.Padding = new Padding(0);
+            holder.FlowDirection = FlowDirection.LeftToRight;
 
             Label Name = AddLabel(woundRating.Name, holder, false);
             if (Name != null) {
@@ -149,11 +163,22 @@ namespace Games.RPG.WoDSheet {
                 Penalty.BorderStyle = BorderStyle.None;
                 Penalty.AutoSize = true;
             }
+
+            AddWoundCheckbox(location, woundRating);
+
+            holder.ResumeLayout();
         }
 
+        private static WoDWoundCheckboxButton AddWoundCheckbox(FlowLayoutPanel location, WoundRating woundRating) {
+            WoDWoundCheckboxButton Wound = new WoDWoundCheckboxButton();
+            location.Controls.Add(Wound);
+            Wound.WoundUpdate += woundRating.Wound_Update;
+            Wound.AutoSize = true;
+            return Wound;
+        }
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
             WodSlider slider = new WodSlider(LabelText: item.Name, SpecialtyText: item.Text, Rating: item.Rating);
-            slider.Update += item.slider_Update;
+            slider.OnChecked += item.slider_Update;
             location.Controls.Add(slider);
             int width = (int)(location.Size.Width - 10);
             slider.Size = new Size(width, slider.PreferredHeight);
@@ -162,11 +187,11 @@ namespace Games.RPG.WoDSheet {
         private static FlowLayoutPanel MakeChildPanels(TraitGroup group, FlowLayoutPanel parent) {
             parent.FlowDirection = FlowDirection.TopDown;
             FlowLayoutPanel ChildItems;
-            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
-            ChildItems.SuspendLayout();
-
             FlowDirection direction;
             Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
+            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight || direction == FlowDirection.RightToLeft) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            ChildItems.SuspendLayout();
+
             ChildItems.FlowDirection = direction;
 
             foreach (TraitGroup item in group.ChildGroups) {

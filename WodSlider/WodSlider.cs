@@ -6,12 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Games.RPG.WoDCharacterData;
 
 namespace Games.RPG.WoDSheet
 {
     public partial class WodSlider : UserControl
     {
-        private WoDCharacterData.BoundedInt Rating;
+        private BoundedInt Rating;
         private int preferredHeight = 25;
         private int preferredWidth = 350;
         public int PreferredHeight
@@ -45,7 +46,7 @@ namespace Games.RPG.WoDSheet
             InitializeComponent();
         }
 
-        public WodSlider(string LabelText, string SpecialtyText, WoDCharacterData.BoundedInt Rating)
+        public WodSlider(string LabelText, string SpecialtyText, BoundedInt Rating)
         {
             this.Rating = Rating;
             InitializeComponent();

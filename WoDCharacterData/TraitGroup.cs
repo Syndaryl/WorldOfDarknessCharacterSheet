@@ -78,7 +78,17 @@ namespace Games.RPG.WoDCharacterData
         public string Name { get; set; }
 
         [XmlElement("DisplayColumns")]
-        public int SpanColumns { get; set; }
+        public int SpanColumns {
+            get {
+                if (spanColumns < 1)
+                    spanColumns = 1;
+                return spanColumns;
+            }
+            set {
+                spanColumns = value < 1 ? 1 : value;
+            }
+        }
+        private int spanColumns = 1;
 
         //[XmlElement("ChildGroups")]
 
