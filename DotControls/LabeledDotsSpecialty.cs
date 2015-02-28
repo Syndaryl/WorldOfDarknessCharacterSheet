@@ -11,16 +11,16 @@ using Games.RPG.WoDCharacterData;
 
 namespace Syndaryl.Windows.Forms
 {
-    public partial class DotsSpecialty : UserControl
+    public partial class LabeledDotsSpecialty : UserControl
     {
         private string Label;
         private string Specialty;
         private Bounded<int> Dots;
 
-        public DotsSpecialty() : this(label: "", specialty: "", dotsmax: 5, dotsmin: 1, dots: 1) {
+        public LabeledDotsSpecialty() : this(label: "", specialty: "", dotsmax: 5, dotsmin: 1, dots: 1) {
         }
 
-        public DotsSpecialty(string label = "Trait", string specialty = "", int dotsmax = 5, int dotsmin = 1, int dots = 1)
+        public LabeledDotsSpecialty(string label = "Trait", string specialty = "", int dotsmax = 5, int dotsmin = 1, int dots = 1)
         {
             this.Label = label;
             this.Specialty = specialty;

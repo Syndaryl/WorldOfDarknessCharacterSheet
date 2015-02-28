@@ -1,6 +1,8 @@
-﻿namespace Syndaryl.Windows.Forms
+﻿using System.Windows.Forms;
+
+namespace Syndaryl.Windows.Forms
 {
-    partial class DotsSpecialty
+    partial class LabeledDotsSpecialty
     {
         /// <summary> 
         /// Required designer variable.
@@ -56,10 +58,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 38);
+            this.label1.Size = new System.Drawing.Size(35, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,7 +69,7 @@
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(67, 3);
+            this.textBox1.Location = new System.Drawing.Point(44, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(72, 27);
             this.textBox1.TabIndex = 1;
@@ -80,19 +81,19 @@
             this.dotsGroup1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dotsGroup1.Dots = 5;
             this.dotsGroup1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.dotsGroup1.Location = new System.Drawing.Point(145, 3);
+            this.dotsGroup1.Location = new System.Drawing.Point(122, 3);
             this.dotsGroup1.Name = "dotsGroup1";
             this.dotsGroup1.RowCount = 1;
             this.dotsGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dotsGroup1.Size = new System.Drawing.Size(245, 32);
+            this.dotsGroup1.Size = new System.Drawing.Size(268, 32);
             this.dotsGroup1.TabIndex = 2;
             // 
-            // DotsSpecialty
+            // LabeledDotsSpecialty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "DotsSpecialty";
+            this.Name = "LabeledDotsSpecialty";
             this.Size = new System.Drawing.Size(393, 38);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

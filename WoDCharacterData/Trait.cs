@@ -85,7 +85,7 @@ namespace Games.RPG.WoDCharacterData
             this.Text = ((TextBox)sender).Text;
         }
 
-        public void slider_Update(object sender, NameTextRatingEventArgs e) {
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e) {
             Text = e.TraitText;
             Rating.Value = e.Value;
         }
@@ -137,7 +137,7 @@ namespace Games.RPG.WoDCharacterData
         public void Text_TextChanged(object sender, EventArgs e) {
             this.Text = ((TextBox)sender).Text;
         }
-        public void slider_Update(object sender, NameTextRatingEventArgs e)
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e)
         {
             Text = e.TraitText;
             Rating.Value = e.Value;
@@ -181,7 +181,7 @@ namespace Games.RPG.WoDCharacterData
             this.Rating = new Bounded<int>(Rating, Minimum, Maximum);
             this.TemporaryValue = new Bounded<int>(Temporary, Minimum, Maximum);
         }
-        public void slider_Update(object sender, NameTextRatingEventArgs e) {
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e) {
             //Text = e.TraitText;
             Rating.Value = e.Value;
         }

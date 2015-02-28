@@ -25,6 +25,6 @@ namespace Games.RPG.WoDCharacterData
     public interface IRatingTrait
     {
         Bounded<int> Rating { get; set; }
-        void slider_Update(object sender, NameTextRatingEventArgs e);
+        void boundControl_Update(object sender, NameTextRatingEventArgs e);
     }
 }

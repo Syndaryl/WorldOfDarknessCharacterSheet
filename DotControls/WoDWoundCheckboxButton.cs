@@ -44,8 +44,6 @@ namespace Games.RPG.WoDCharacterData {
         }
 
         #endregion Events
-
-
     }
 
 }

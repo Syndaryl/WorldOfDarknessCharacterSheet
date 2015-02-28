@@ -47,11 +47,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DotsGroupToolboxItem.cs" />
-    <Compile Include="DotsSpecialty.cs">
+    <Compile Include="LabeledDotsSpecialty.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DotsSpecialty.Designer.cs">
-      <DependentUpon>DotsSpecialty.cs</DependentUpon>
+    <Compile Include="LabeledDotsSpecialty.Designer.cs">
+      <DependentUpon>LabeledDotsSpecialty.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="LabeledTextBox.cs">
@@ -78,8 +78,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DotsSpecialty.resx">
-      <DependentUpon>DotsSpecialty.cs</DependentUpon>
+    <EmbeddedResource Include="LabeledDotsSpecialty.resx">
+      <DependentUpon>LabeledDotsSpecialty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.cs</DependentUpon>
