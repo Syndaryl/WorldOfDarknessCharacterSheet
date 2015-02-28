@@ -192,25 +192,25 @@ namespace Games.RPG.WoDCharacterData
                     new TraitGroup(
                         Name: "Physical",
                         ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4),
-                            new NameTextRating(Name: "Dexterity", Text: string.Empty, Rating: 2),
-                            new NameTextRating(Name: "Stamina", Text: string.Empty, Rating: 3)
+                            new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Dexterity", Text: string.Empty, Rating: 2, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Stamina", Text: string.Empty, Rating: 3, Minimum: 1, Maximum: 5)
                         }
                     ),
                     new TraitGroup(
                         Name: "Social",
                         ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Charisma", Text: string.Empty, Rating: 3),
-                            new NameTextRating(Name: "Manipulation", Text: string.Empty, Rating: 2),
-                            new NameTextRating(Name: "Appearance", Text: string.Empty, Rating: 1)
+                            new NameTextRating(Name: "Charisma", Text: string.Empty, Rating: 3, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Manipulation", Text: string.Empty, Rating: 2, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Appearance", Text: string.Empty, Rating: 1, Minimum: 1, Maximum: 5)
                         }
                     ),
                     new TraitGroup(
                         Name: "Mental",
                         ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Perception", Text: string.Empty, Rating: 4),
-                            new NameTextRating(Name: "Intelligence", Text: string.Empty, Rating: 1),
-                            new NameTextRating(Name: "Wits", Text: string.Empty, Rating: 3)
+                            new NameTextRating(Name: "Perception", Text: string.Empty, Rating: 4, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Intelligence", Text: string.Empty, Rating: 1, Minimum: 1, Maximum: 5),
+                            new NameTextRating(Name: "Wits", Text: string.Empty, Rating: 3, Minimum: 1, Maximum: 5)
                         }
                     )
                 }

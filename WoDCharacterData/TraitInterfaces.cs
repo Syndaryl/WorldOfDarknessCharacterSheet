@@ -19,11 +19,11 @@ namespace Games.RPG.WoDCharacterData
     }
     public interface ITemporaryValueTrait
     {
-        BoundedInt TemporaryValue { get; set; }
+        Bounded<int> TemporaryValue { get; set; }
     }
     public interface IRatingTrait
     {
-        BoundedInt Rating { get; set; }
+        Bounded<int> Rating { get; set; }
         void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e);
     }
 }

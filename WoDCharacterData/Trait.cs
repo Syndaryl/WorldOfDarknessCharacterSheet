@@ -70,14 +70,14 @@ namespace Games.RPG.WoDCharacterData
             : base()
         {
             Text = string.Empty;
-            BoundedInt Rating = new BoundedInt();
+            Bounded<int> Rating = new Bounded<int>();
         }
 
         public UnnamedTextRating(string Text, int Rating)
             : base()
         {
             this.Text = Text;
-            this.Rating = new BoundedInt(Rating);
+            this.Rating = new Bounded<int>(Rating);
         }
 
         public void Text_TextChanged(object sender, EventArgs e) {
@@ -93,7 +93,7 @@ namespace Games.RPG.WoDCharacterData
         public string Text { get; set; }
 
         [XmlElement("Rating")]
-        public BoundedInt Rating { get; set; }
+        public Bounded<int> Rating { get; set; }
     }
 
     public class NameTextRating : Trait, INamedTrait,  ITextTrait, IRatingTrait
@@ -102,14 +102,14 @@ namespace Games.RPG.WoDCharacterData
         {
             Name = string.Empty;
             Text = string.Empty;
-            BoundedInt Rating = new BoundedInt();
+            Bounded<int> Rating = new Bounded<int>();
         }
 
         public NameTextRating(string Name, string Text, int Rating) : base()
         {
             this.Name = Name;
             this.Text = Text;
-            this.Rating = new BoundedInt(Rating);
+            this.Rating = new Bounded<int>(Rating);
         }
 
         public NameTextRating(string Name, string Text, int Rating, int Minimum, int Maximum)
@@ -117,7 +117,7 @@ namespace Games.RPG.WoDCharacterData
             // TODO: Complete member initialization
             this.Name = Name;
             this.Text = Text;
-            this.Rating = new BoundedInt (Rating, Minimum: Minimum, Maximum: Maximum);
+            this.Rating = new Bounded<int> (Rating, minimum: Minimum, maximum: Maximum);
         }
 
         [XmlAttribute("Name")]
@@ -128,7 +128,7 @@ namespace Games.RPG.WoDCharacterData
         public string Text { get; set; }  
 
         [XmlElement("Rating")]
-        public BoundedInt Rating { get; set; }
+        public Bounded<int> Rating { get; set; }
 
 
 
@@ -150,7 +150,7 @@ namespace Games.RPG.WoDCharacterData
         public string Name { get; set; }
 
         [XmlElement("TemporaryValue")]
-        public BoundedInt TemporaryValue
+        public Bounded<int> TemporaryValue
         {
             get;
             set;
@@ -163,10 +163,10 @@ namespace Games.RPG.WoDCharacterData
         public NamedRatingWithTempValue() : base()
         {
             this.Name = string.Empty;
-            this.Rating = new BoundedInt();
-            this.TemporaryValue = new BoundedInt();
+            this.Rating = new Bounded<int>();
+            this.TemporaryValue = new Bounded<int>();
         }
-        public NamedRatingWithTempValue(BoundedInt Rating, BoundedInt Temporary, string Name="")
+        public NamedRatingWithTempValue(Bounded<int> Rating, Bounded<int> Temporary, string Name="")
             : base()
         {
             this.Name = Name;
@@ -177,8 +177,8 @@ namespace Games.RPG.WoDCharacterData
         public NamedRatingWithTempValue(string Name, int Rating, int Temporary, int Minimum, int Maximum) {
             // TODO: Complete member initialization
             this.Name = Name;
-            this.Rating = new BoundedInt(Rating, Minimum, Maximum);
-            this.TemporaryValue = new BoundedInt(Temporary, Minimum, Maximum);
+            this.Rating = new Bounded<int>(Rating, Minimum, Maximum);
+            this.TemporaryValue = new Bounded<int>(Temporary, Minimum, Maximum);
         }
         public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e) {
             //Text = e.TraitText;
@@ -189,14 +189,14 @@ namespace Games.RPG.WoDCharacterData
         public string Name { get; set; }
 
         [XmlElement("Rating")]
-        public BoundedInt Rating
+        public Bounded<int> Rating
         {
             get;
             set;
         }
 
         [XmlElement("TemporaryValue")]
-        public BoundedInt TemporaryValue
+        public Bounded<int> TemporaryValue
         {
             get;
             set;
