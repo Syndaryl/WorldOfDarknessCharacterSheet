@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDCharacterData", "WoDChar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "StringWriterWithEncoding\DataTypes.csproj", "{E8420222-2DE0-42D7-B217-86390B71A866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotControls", "DotControls\DotControls.csproj", "{1968C838-4373-4CF6-94E0-92B0C912AAC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDControls", "DotControls\WoDControls.csproj", "{1968C838-4373-4CF6-94E0-92B0C912AAC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDEvents", "WoDExceptions\WoDEvents.csproj", "{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,16 @@ Global
 		{1968C838-4373-4CF6-94E0-92B0C912AAC7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1968C838-4373-4CF6-94E0-92B0C912AAC7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1968C838-4373-4CF6-94E0-92B0C912AAC7}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5B1E0A8C-7703-4E4E-8BE6-E6FDD824E1E8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

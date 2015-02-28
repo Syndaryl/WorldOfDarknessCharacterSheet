@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Games.RPG.WoDSheet</RootNamespace>
     <AssemblyName>WoDSheet</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -92,9 +92,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DotControls\DotControls.csproj">
+    <ProjectReference Include="..\DotControls\WoDControls.csproj">
       <Project>{1968c838-4373-4cf6-94e0-92b0c912aac7}</Project>
-      <Name>DotControls</Name>
+      <Name>WoDControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringWriterWithEncoding\DataTypes.csproj">
       <Project>{e8420222-2de0-42d7-b217-86390b71a866}</Project>
@@ -103,6 +103,10 @@
     <ProjectReference Include="..\WoDCharacterData\WoDCharacterData.csproj">
       <Project>{23b5fc4c-c9a8-418e-9b81-3eb33eaa7f46}</Project>
       <Name>WoDCharacterData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WoDExceptions\WoDEvents.csproj">
+      <Project>{5b1e0a8c-7703-4e4e-8be6-e6fdd824e1e8}</Project>
+      <Name>WoDEvents</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

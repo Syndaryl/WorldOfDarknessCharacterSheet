@@ -180,11 +180,15 @@ namespace Games.RPG.WoDSheet {
             return Wound;
         }
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
-            WodSlider slider = new WodSlider(LabelText: item.Name, SpecialtyText: item.Text, Rating: item.Rating);
-            slider.OnChecked += item.slider_Update;
-            location.Controls.Add(slider);
-            int width = (int)(location.Size.Width - 10);
-            slider.Size = new Size(width, slider.PreferredHeight);
+            //WodSlider slider = new WodSlider(LabelText: item.Name, SpecialtyText: item.Text, Rating: item.Rating);
+            //slider.OnChecked += item.slider_Update;
+            //location.Controls.Add(slider);
+            //int width = (int)(location.Size.Width - 10);
+            //slider.Size = new Size(width, slider.PreferredHeight);
+            DotsSpecialty Dots = new DotsSpecialty(item.Name, item.Text, item.Rating.Max, item.Rating.Min, item.Rating);
+            location.Controls.Add(Dots);
+            Dots.OnUpdate += item.slider_Update;
+
         }
 
         private static FlowLayoutPanel MakeChildPanels(TraitGroup group, FlowLayoutPanel parent) {

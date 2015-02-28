@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace Syndaryl.Windows.Forms {
-    public class NumericChangeEventArgs {
+    public class NumericChangeEventArgs : EventArgs {
         private int value;
 
         public NumericChangeEventArgs(int value) {

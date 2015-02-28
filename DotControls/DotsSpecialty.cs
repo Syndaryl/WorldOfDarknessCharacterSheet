@@ -33,5 +33,14 @@ namespace Syndaryl.Windows.Forms
             dotsGroup1.SetupDotsTable();
         }
 
+        public event EventHandler<NameTextRatingEventArgs> OnUpdate;
+
+        private void RaiseUpdate(string specialty, int rating) {
+            EventHandler<NameTextRatingEventArgs> handler = OnUpdate;
+            if (handler != null) {
+                handler(null, new NameTextRatingEventArgs(Dots, Specialty));
+            }
+        }
+
     }
 }
