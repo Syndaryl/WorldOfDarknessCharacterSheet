@@ -32,7 +32,7 @@ namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls
 			Deserialize(info, context);
 		}
 
-        // This implementation sets the new control's Text and  
+        // This implementation sets the new control's text and  
         // AutoSize properties. 
         protected override IComponent[] CreateComponentsCore(
             IDesignerHost host)

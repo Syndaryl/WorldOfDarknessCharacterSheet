@@ -34,21 +34,27 @@
             // 
             // Label
             // 
-            this.Label.AutoSize = true;
-            this.Label.Location = new System.Drawing.Point(3, 3);
+            this.Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Label.AutoEllipsis = true;
+            this.Label.Location = new System.Drawing.Point(0, 0);
             this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(35, 13);
+            this.Label.Size = new System.Drawing.Size(76, 29);
             this.Label.TabIndex = 0;
             this.Label.Text = "label1";
             this.Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Entry
             // 
-            this.Entry.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Entry.Location = new System.Drawing.Point(88, 0);
+            this.Entry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Entry.BackColor = System.Drawing.SystemColors.Window;
+            this.Entry.Location = new System.Drawing.Point(82, 0);
             this.Entry.Name = "Entry";
-            this.Entry.Size = new System.Drawing.Size(181, 20);
+            this.Entry.Size = new System.Drawing.Size(108, 20);
             this.Entry.TabIndex = 1;
+            this.Entry.WordWrap = false;
+            this.Entry.TextChanged += new System.EventHandler(this.Entry_TextChanged);
             // 
             // LabeledTextBox
             // 
@@ -57,7 +63,7 @@
             this.Controls.Add(this.Entry);
             this.Controls.Add(this.Label);
             this.Name = "LabeledTextBox";
-            this.Size = new System.Drawing.Size(269, 20);
+            this.Size = new System.Drawing.Size(196, 29);
             this.ResumeLayout(false);
             this.PerformLayout();
 

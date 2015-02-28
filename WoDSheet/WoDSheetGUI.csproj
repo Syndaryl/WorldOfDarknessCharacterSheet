@@ -92,6 +92,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotControls\DotControls.csproj">
+      <Project>{1968c838-4373-4cf6-94e0-92b0c912aac7}</Project>
+      <Name>DotControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WoDCharacterData\WoDCharacterData.csproj">
       <Project>{23b5fc4c-c9a8-418e-9b81-3eb33eaa7f46}</Project>
       <Name>WoDCharacterData</Name>

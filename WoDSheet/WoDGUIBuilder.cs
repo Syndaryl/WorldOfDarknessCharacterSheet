@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Games.RPG.WoDCharacterData;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls;
 
 namespace Games.RPG.WoDSheet {
     class WoDGUIBuilder {
@@ -111,26 +112,28 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
-            FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
-            //holder.SuspendLayout();
-            holder.BorderStyle = BorderStyle.None;
-            holder.Padding = new Padding(0);
-            Label Name = AddLabel(namedText.Name, holder, true);
-            int TextWidth = holder.Width - 20;
-            if (Name != null) {
-                Name.Padding = new Padding(0);
-                Name.BorderStyle = BorderStyle.None;
-                Name.TextAlign = ContentAlignment.MiddleLeft;
-                Name.AutoSize = true;
-                TextWidth = TextWidth - Name.Width;
-            }
-            TextBox Text = MakeTextBox(namedText.Text, holder, TextWidth);
-            if (Name != null && Text != null)
-                Name.Height = Text.Height;
-            holder.Height = holder.PreferredSize.Height;
-            //holder.ResumeLayout();
+            //FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+            ////holder.SuspendLayout();
+            //holder.BorderStyle = BorderStyle.None;
+            //holder.Padding = new Padding(0);
+            //label Name = AddLabel(namedText.Name, holder, true);
+            //int TextWidth = holder.Width - 20;
+            //if (Name != null) {
+            //    Name.Padding = new Padding(0);
+            //    Name.BorderStyle = BorderStyle.None;
+            //    Name.TextAlign = ContentAlignment.MiddleLeft;
+            //    Name.AutoSize = true;
+            //    TextWidth = TextWidth - Name.Width;
+            //}
+            //TextBox text = MakeTextBox(namedText.text, holder, TextWidth);
+            //if (Name != null && text != null)
+            //    Name.Height = text.Height;
+            //holder.Height = holder.PreferredSize.Height;
+            ////holder.ResumeLayout();
+            LabeledTextBox Text = new LabeledTextBox(label: namedText.Name, text: namedText.Text, parent: location, bold: true);
             if (Text != null)
-                Text.TextChanged += namedText.Text_TextChanged;
+                Text.OnEntryUpdate += namedText.Text_TextChanged;
+
         }
 
         private static TextBox MakeTextBox(string namedText, FlowLayoutPanel holder, int TextWidth) {
