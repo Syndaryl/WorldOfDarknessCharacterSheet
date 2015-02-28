@@ -12,6 +12,8 @@ namespace Games.RPG.WoDCharacterData
     /// or "greater than" another object of the same type.
     /// 
     /// The bounded generic object can be converted between itself and the generic type, and compared against itself and the generic type.
+    /// 
+    /// Bounded objects can be serialized to XML - the value will become the text value of the node, and the Min and Max will be attributes.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Bounded<T> : 
@@ -38,6 +40,9 @@ namespace Games.RPG.WoDCharacterData
         #endregion Constructors
 
         #region Properties
+        /// <summary>
+        /// The actual value of the bounded object. This is the value used in comparisons. . XMLSerialized as #text
+        /// </summary>
         [XmlText()]
         public T Value {
             get {
@@ -52,6 +57,9 @@ namespace Games.RPG.WoDCharacterData
             }
         }
 
+        /// <summary>
+        /// The minimum value of the bounded object. XMLSerialized as @Min
+        /// </summary>
         [XmlAttribute("Min")]
         public T Min {
             get {
@@ -64,6 +72,9 @@ namespace Games.RPG.WoDCharacterData
             }
         }
 
+        /// <summary>
+        /// The maximum value of the bounded object. XMLSerialized as @Max
+        /// </summary>
         [XmlAttribute("Max")]
         public T Max
         {
