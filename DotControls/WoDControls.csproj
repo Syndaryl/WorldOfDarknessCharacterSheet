@@ -47,6 +47,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DotsGroupToolboxItem.cs" />
+    <Compile Include="DoubleClickRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DoubleClickRadioButton.Designer.cs">
+      <DependentUpon>DoubleClickRadioButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabeledDotsSpecialty.cs">
       <SubType>UserControl</SubType>
     </Compile>
