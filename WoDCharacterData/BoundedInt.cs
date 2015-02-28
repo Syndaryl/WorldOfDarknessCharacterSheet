@@ -88,17 +88,17 @@ namespace Games.RPG.WoDCharacterData
 
         #region Helper Methods
 
-        /// <summary>
-        /// For Mike so he can get all LINQy with it.
-        /// </summary>
-        /// <typeparam name="T">The generic type of the object</typeparam>
-        /// <param name="initial"></param>
-        /// <param name="function"></param>
-        /// <returns></returns>
-        public static Bounded<T> Bind<T>(this Bounded<T> initial, Func<T, Bounded<T>> function)
-            where T : IEquatable<T>, IComparable<T> {
-            return function(initial.Value);
-        }
+        ///// <summary>
+        ///// For Mike so he can get all LINQy with it.
+        ///// </summary>
+        ///// <typeparam name="T">The generic type of the object</typeparam>
+        ///// <param name="initial"></param>
+        ///// <param name="function"></param>
+        ///// <returns></returns>
+        //public static Bounded<T> Bind<T>(this Bounded<T> initial, Func<T, Bounded<T>> function)
+        //    where T : IEquatable<T>, IComparable<T> {
+        //    return function(initial.Value);
+        //}
 
         #endregion Helper Methods
 
