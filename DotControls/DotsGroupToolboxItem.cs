@@ -41,7 +41,7 @@ namespace Syndaryl.Windows.Forms
             IComponent[] comps = base.CreateComponentsCore(host);
 
             // The returned IComponent array contains a single  
-            // component, which is an instance of DemoControl.
+            // component, which is an instance of DotsGroup.
             ((DotsGroup)comps[0]).SetupDotsTable();
 
             return comps;

@@ -18,6 +18,8 @@ namespace Syndaryl.Windows.Forms
     public class DotsGroup : TableLayoutPanel
     {
         public int Dots { get; set; }
+        public bool CanBeZero { get; set; }
+
         internal RadioButtonWithCount[] radioButtons;
         public DotsGroup()
             : this(5, 1)
@@ -27,6 +29,7 @@ namespace Syndaryl.Windows.Forms
         {
             Dots = dots;
             GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
+            CanBeZero = false;
         }
 
         public void SetupDotsTable()
@@ -50,16 +53,7 @@ namespace Syndaryl.Windows.Forms
             Padding noPadding = new Padding(0);
             for (int d = 0; d < Dots; d++)
             {
-                radioButtons[d] = new RadioButtonWithCount(d);
-                radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
-                radioButtons[d].AutoCheck = false;
-                radioButtons[d].Click += DotsGroup_Click;
-                radioButtons[d].DoubleClick += DotsGroup_DoubleClick;
-                radioButtons[d].Text = "";
-                radioButtons[d].Margin = noPadding;
-                radioButtons[d].Padding = noPadding;
-                this.Controls.Add(radioButtons[d]);
-                //radioButtons[d].Scale(factor);
+                MakeRadioButton(noPadding, d);
             }
             Width = radioButtons[0].Width * Dots;
             Height = radioButtons[0].Height;
@@ -67,6 +61,19 @@ namespace Syndaryl.Windows.Forms
             this.FillColumnStyles(SizeType.Percent, colWidth);
             //SetRadioButtons(Dots-1);
             ResumeLayout();
+        }
+
+        private RadioButtonWithCount MakeRadioButton(Padding padding, int d) {
+            radioButtons[d] = new RadioButtonWithCount(d);
+            radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
+            radioButtons[d].AutoCheck = false;
+            radioButtons[d].Click += DotsGroup_Click;
+            radioButtons[d].DoubleClick += DotsGroup_DoubleClick;
+            radioButtons[d].Text = "";
+            radioButtons[d].Margin = padding;
+            radioButtons[d].Padding = padding;
+            this.Controls.Add(radioButtons[d]);
+            return radioButtons[d];
         }
 
         internal void SetRadioButtons(int index) {
@@ -85,7 +92,10 @@ namespace Syndaryl.Windows.Forms
         private void DotsGroup_DoubleClick(object sender, EventArgs e) {
             // Never gets called, sadpanda
             RadioButtonWithCount button = (RadioButtonWithCount)sender;
-            SetRadioButtons(button.Index - 1);
+            if (CanBeZero)
+                SetRadioButtons(button.Index - 1);
+            else
+                SetRadioButtons(Math.Max(button.Index - 1,0));
         }
 
         public void DotsGroup_Click(object sender, EventArgs e) {

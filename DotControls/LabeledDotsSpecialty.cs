@@ -30,6 +30,7 @@ namespace Syndaryl.Windows.Forms
             this.label1.Text = Label;
             this.dotsGroup1.Dots = Dots.Max;
             this.textBox1.Text = specialty;
+            dotsGroup1.CanBeZero = Dots.Min == 0? true : false;
             dotsGroup1.SetupDotsTable();
             dotsGroup1.SetRadioButtons(Dots.Value - 1);
             dotsGroup1.OnEntryUpdate += dotsGroup1_OnEntryUpdate;

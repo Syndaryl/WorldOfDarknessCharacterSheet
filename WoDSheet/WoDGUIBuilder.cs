@@ -113,24 +113,6 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
-            //FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
-            ////holder.SuspendLayout();
-            //holder.BorderStyle = BorderStyle.None;
-            //holder.Padding = new Padding(0);
-            //label Name = AddLabel(namedText.Name, holder, true);
-            //int TextWidth = holder.Width - 20;
-            //if (Name != null) {
-            //    Name.Padding = new Padding(0);
-            //    Name.BorderStyle = BorderStyle.None;
-            //    Name.TextAlign = ContentAlignment.MiddleLeft;
-            //    Name.AutoSize = true;
-            //    TextWidth = TextWidth - Name.Width;
-            //}
-            //TextBox text = MakeTextBox(namedText.text, holder, TextWidth);
-            //if (Name != null && text != null)
-            //    Name.Height = text.Height;
-            //holder.Height = holder.PreferredSize.Height;
-            ////holder.ResumeLayout();
             LabeledTextBox Text = new LabeledTextBox(label: namedText.Name, text: namedText.Text, parent: location, bold: true);
             if (Text != null)
                 Text.OnEntryUpdate += namedText.Text_TextChanged;
@@ -181,7 +163,11 @@ namespace Games.RPG.WoDSheet {
             return Wound;
         }
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
-            LabeledDotsSpecialty Dots = new LabeledDotsSpecialty(item.Name, item.Text, item.Rating.Max, item.Rating.Min, item.Rating);
+            LabeledDotsSpecialty Dots = new LabeledDotsSpecialty(item.Name, 
+                specialty: item.Text, 
+                dotsmax: item.Rating.Max, 
+                dotsmin: item.Rating.Min, 
+                dots: item.Rating);
             location.Controls.Add(Dots);
             Dots.OnUpdate += item.boundControl_Update;
 

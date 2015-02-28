@@ -33,8 +33,8 @@ namespace Games.RPG.WoDCharacterData
         /// <param name="minimum">Minimum value that this object is allowed to be set to (uses default(T) if not specified)</param>
         /// <param name="maximum">Maximum value that this object is allowed to be set to (uses default(T) if not specified)</param>
         public Bounded(T initial, T minimum = default(T), T maximum = default(T)) {
-            Min = minimum;
-            Max = maximum;
+            min = minimum;
+            max = maximum;
             this.Value = initial;
         }
         #endregion Constructors
