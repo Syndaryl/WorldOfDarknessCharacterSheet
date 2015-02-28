@@ -60,7 +60,7 @@
             this.StatusBar.Location = new System.Drawing.Point(0, 705);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.Padding = new System.Windows.Forms.Padding(2, 0, 14, 0);
-            this.StatusBar.Size = new System.Drawing.Size(1090, 22);
+            this.StatusBar.Size = new System.Drawing.Size(1472, 22);
             this.StatusBar.TabIndex = 0;
             this.StatusBar.Text = "statusStrip1";
             // 
@@ -94,7 +94,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1090, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1472, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -221,9 +221,9 @@
             this.WodFlowRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WodFlowRoot.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.WodFlowRoot.Location = new System.Drawing.Point(0, 25);
-            this.WodFlowRoot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WodFlowRoot.Margin = new System.Windows.Forms.Padding(4);
             this.WodFlowRoot.Name = "WodFlowRoot";
-            this.WodFlowRoot.Size = new System.Drawing.Size(1090, 680);
+            this.WodFlowRoot.Size = new System.Drawing.Size(1472, 680);
             this.WodFlowRoot.TabIndex = 2;
             this.WodFlowRoot.WrapContents = false;
             // 
@@ -233,7 +233,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1090, 727);
+            this.ClientSize = new System.Drawing.Size(1472, 727);
             this.Controls.Add(this.WodFlowRoot);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.StatusBar);

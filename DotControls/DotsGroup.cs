@@ -46,41 +46,54 @@ namespace Syndaryl.Windows.Forms
             // ColumnStyle colStyle = new ColumnStyle(SizeType.Percent, colWidth);
 
             SizeF factor;
-
+            factor = new SizeF(1.5F, 1.5F);
+            Padding noPadding = new Padding(0);
             for (int d = 0; d < Dots; d++)
             {
                 radioButtons[d] = new RadioButtonWithCount(d);
                 radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
                 radioButtons[d].AutoCheck = false;
                 radioButtons[d].Click += DotsGroup_Click;
+                radioButtons[d].DoubleClick += DotsGroup_DoubleClick;
                 radioButtons[d].Text = "";
+                radioButtons[d].Margin = noPadding;
+                radioButtons[d].Padding = noPadding;
                 this.Controls.Add(radioButtons[d]);
-                factor = new SizeF(1.5F, 1.5F);
-                radioButtons[d].Scale(factor);
+                //radioButtons[d].Scale(factor);
             }
             Width = radioButtons[0].Width * Dots;
             Height = radioButtons[0].Height;
             this.FillRowStyles(SizeType.AutoSize, 1);
             this.FillColumnStyles(SizeType.Percent, colWidth);
+            //SetRadioButtons(Dots-1);
             ResumeLayout();
         }
 
-        public void DotsGroup_Click(object sender, EventArgs e)
-        {
-            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+        internal void SetRadioButtons(int index) {
             //button.Checked = !button.Checked;
-            for (int i = 0; i <= button.Index; i++)
-            {
+            for (int i = 0; i <= index; i++) {
                 radioButtons[i].Checked = true;
             }
-            for (int i = button.Index+1; i < radioButtons.Count(); i++)
-            {
+            for (int i = index + 1; i < radioButtons.Count(); i++) {
                 radioButtons[i].Checked = false;
             }
+            RaiseUpdate(index + 1);
+        }
 
-        }       
+        #region Events and Event Handlers
 
-        #region Events
+        private void DotsGroup_DoubleClick(object sender, EventArgs e) {
+            // Never gets called, sadpanda
+            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+            SetRadioButtons(button.Index - 1);
+        }
+
+        public void DotsGroup_Click(object sender, EventArgs e) {
+            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+            SetRadioButtons(button.Index);
+
+        }
+
         public event EventHandler<NumericChangeEventArgs> OnEntryUpdate;
         private void RaiseUpdate(int value) {
             EventHandler<NumericChangeEventArgs> handler = OnEntryUpdate;
@@ -89,10 +102,6 @@ namespace Syndaryl.Windows.Forms
             }
         }
 
-        private void Entry_TextChanged(object sender, EventArgs e) {
-            RaiseUpdate(Dots);
-        }
-
-        #endregion Events
+        #endregion Events and Event Handlers
     }
 }

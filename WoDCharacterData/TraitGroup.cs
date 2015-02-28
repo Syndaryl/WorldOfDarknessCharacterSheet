@@ -113,7 +113,10 @@ namespace Games.RPG.WoDCharacterData
            Type = typeof(UnnamedTextRating)),
         XmlArrayItem(ElementName = "RatingWithTempValue",
            IsNullable = true,
-           Type = typeof(NamedRatingWithTempValue))
+           Type = typeof(NamedRatingWithTempValue)),
+        XmlArrayItem(ElementName = "WoundRating",
+           IsNullable = true,
+           Type = typeof(WoundRating)),
         ]
 
         [XmlArray("Traits")]

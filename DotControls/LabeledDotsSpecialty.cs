@@ -31,6 +31,13 @@ namespace Syndaryl.Windows.Forms
             this.dotsGroup1.Dots = Dots.Max;
             this.textBox1.Text = specialty;
             dotsGroup1.SetupDotsTable();
+            dotsGroup1.SetRadioButtons(Dots.Value - 1);
+            dotsGroup1.OnEntryUpdate += dotsGroup1_OnEntryUpdate;
+        }
+
+        void dotsGroup1_OnEntryUpdate(object sender, NumericChangeEventArgs e) {
+            Dots.Value = e.Value;
+            RaiseUpdate(Specialty, Dots);
         }
 
         public event EventHandler<NameTextRatingEventArgs> OnUpdate;
