@@ -226,7 +226,7 @@ namespace Games.RPG.WoDCharacterData
         private int woundPenalty = 0;
 
         public void Wound_Update(object sender, WoundStateChangeEventArgs e) {
-            this.WoundState = (WoundStates) e.WoundState;
+            this.WoundState = (WoundStates)e.WoundState;
         }
 
 

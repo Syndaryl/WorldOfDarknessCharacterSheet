@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Syndaryl.Windows.Forms;
 
 namespace Games.RPG.WoDCharacterData {
     public partial class WoDWoundCheckboxButton : UserControl {
@@ -27,8 +28,8 @@ namespace Games.RPG.WoDCharacterData {
         }
 
         private void RotateWoundState() {
-            WoundState++;
-            if ((int)WoundState > Enum.GetValues(typeof(WoundStates)).Length) { WoundState = 0; }
+            if ((int)WoundState == Enum.GetValues(typeof(WoundStates)).Length) WoundState = 0;
+                else WoundState++;
             WoundButton.ImageIndex = (int)WoundState;
             RaiseUpdate(WoundState);
         }
@@ -38,7 +39,7 @@ namespace Games.RPG.WoDCharacterData {
         private void RaiseUpdate(WoundStates State) {
             EventHandler<WoundStateChangeEventArgs> handler = WoundUpdate;
             if (handler != null) {
-                handler(null, new WoundStateChangeEventArgs(State));
+                handler(null, new WoundStateChangeEventArgs((byte)State));
             }
         }
 
@@ -46,16 +47,5 @@ namespace Games.RPG.WoDCharacterData {
 
 
     }
-    public class WoundStateChangeEventArgs : EventArgs {
- 
-        #region Constructors
-        public WoundStateChangeEventArgs(WoundStates Wound) {
-            WoundState = Wound;
-        }
-        #endregion Constructors
 
-        #region Properties
-        public WoundStates WoundState { get; set; }
-        #endregion Properties
-    }
 }
