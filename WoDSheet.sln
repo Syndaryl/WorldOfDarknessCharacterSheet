@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDCharacterData", "WoDChar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringWriterWithEncoding", "StringWriterWithEncoding\StringWriterWithEncoding.csproj", "{E8420222-2DE0-42D7-B217-86390B71A866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotControls", "..\WoD Chargen Configurable\DotControls\DotControls.csproj", "{1968C838-4373-4CF6-94E0-92B0C912AAC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotControls", "DotControls\DotControls.csproj", "{1968C838-4373-4CF6-94E0-92B0C912AAC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
