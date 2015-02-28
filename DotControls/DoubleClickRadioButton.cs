@@ -8,16 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Syndaryl.Windows.Forms {
-    //public partial class DoubleClickRadioButton : Control {
-    //    public DoubleClickRadioButton() {
-    //        InitializeComponent();
-    //    }
-
-    //    protected override void OnPaint(PaintEventArgs pe) {
-    //        base.OnPaint(pe);
-    //    }
-    //}
-
     public partial class DoubleClickRadioButton : System.Windows.Forms.RadioButton {
         public DoubleClickRadioButton() {
             InitializeComponent();

@@ -67,8 +67,8 @@ namespace Syndaryl.Windows.Forms
             radioButtons[d] = new RadioButtonWithCount(d);
             radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
             radioButtons[d].AutoCheck = false;
-            radioButtons[d].Click += DotsGroup_Click;
-            radioButtons[d].DoubleClick += DotsGroup_DoubleClick;
+            radioButtons[d].MouseClick += DotsGroup_Click;
+            radioButtons[d].MouseDoubleClick += DotsGroup_DoubleClick;
             radioButtons[d].Text = "";
             radioButtons[d].Margin = padding;
             radioButtons[d].Padding = padding;
@@ -77,6 +77,7 @@ namespace Syndaryl.Windows.Forms
         }
 
         internal void SetRadioButtons(int index) {
+
             //button.Checked = !button.Checked;
             for (int i = 0; i <= index; i++) {
                 radioButtons[i].Checked = true;
@@ -92,16 +93,19 @@ namespace Syndaryl.Windows.Forms
         private void DotsGroup_DoubleClick(object sender, EventArgs e) {
             // Never gets called, sadpanda
             RadioButtonWithCount button = (RadioButtonWithCount)sender;
-            if (CanBeZero)
-                SetRadioButtons(button.Index - 1);
-            else
-                SetRadioButtons(Math.Max(button.Index - 1,0));
+            lock (radioButtons) { 
+                if (CanBeZero)
+                    SetRadioButtons(button.Index - 1);
+                else
+                    SetRadioButtons(Math.Max(button.Index - 1,0));
+            }
         }
 
         public void DotsGroup_Click(object sender, EventArgs e) {
             RadioButtonWithCount button = (RadioButtonWithCount)sender;
-            SetRadioButtons(button.Index);
-
+            lock (radioButtons) { 
+                SetRadioButtons(button.Index);
+            }
         }
 
         public event EventHandler<NumericChangeEventArgs> OnEntryUpdate;
