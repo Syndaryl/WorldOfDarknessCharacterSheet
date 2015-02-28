@@ -6,17 +6,34 @@ using System.Xml.Serialization;
 
 namespace Games.RPG.WoDCharacterData
 {
+    /// <summary>
+    /// A bounded generic object - this object has its possible range of values limited within the range normally available to its datatype.
+    /// The generic object type must be IComparable and IEquatable - it must be an object that can be said to be "equal to", "less than" 
+    /// or "greater than" another object of the same type.
+    /// 
+    /// The bounded generic object can be converted between itself and the generic type, and compared against itself and the generic type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Bounded<T> : 
         IComparable<T>, IComparable<Bounded<T>>, IEquatable<T>, IEquatable<Bounded<T>>
-        where T:IComparable<T>  {
+        where T:IComparable<T>, IEquatable<T>  {
         #region Constructors
-        public Bounded<T>()
-        {
+        public Bounded() {
+            Value = default(T);
+            Min = default(T);
+            Max = default(T);
         }
 
-        public Bounded(T d)
-        {
-            this.Value = d;
+        /// <summary>
+        /// Constructor of most use
+        /// </summary>
+        /// <param name="initial">Initial value of this bounded object - will be immediately bounded by the minimum and maximum Properties even if not specified</param>
+        /// <param name="minimum">Minimum value that this object is allowed to be set to (uses default(T) if not specified)</param>
+        /// <param name="maximum">Maximum value that this object is allowed to be set to (uses default(T) if not specified)</param>
+        public Bounded(T initial, T minimum = default(T), T maximum = default(T)) {
+            Min = minimum;
+            Max = maximum;
+            this.Value = initial;
         }
         #endregion Constructors
 
@@ -69,12 +86,39 @@ namespace Games.RPG.WoDCharacterData
         private T min;
         #endregion fields
 
+        #region Helper Methods
+
+        /// <summary>
+        /// For Mike so he can get all LINQy with it.
+        /// </summary>
+        /// <typeparam name="T">The generic type of the object</typeparam>
+        /// <param name="initial"></param>
+        /// <param name="function"></param>
+        /// <returns></returns>
+        public static Bounded<T> Bind<T>(this Bounded<T> initial, Func<T, Bounded<T>> function)
+            where T : IEquatable<T>, IComparable<T> {
+            return function(initial.Value);
+        }
+
+        #endregion Helper Methods
+
         #region Operators and Interfaces
-        public static implicit operator T(Bounded<T> d)  // implicit BoundedInt to int conversion operator
+        /// <summary>
+        /// implicit Bounded to T conversion operator
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static implicit operator T(Bounded<T> d)
         {
             return d.Value;  // implicit conversion
         }
-        public static implicit operator Bounded<T>(T d)  // implicit BoundedInt to int conversion operator
+
+        /// <summary>
+        /// implicit T to Bounded conversion operator
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static implicit operator Bounded<T>(T d)
         {
             return new Bounded<T>(d);  // implicit conversion
         }
