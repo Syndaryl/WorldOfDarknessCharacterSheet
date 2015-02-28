@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoundedInt.cs" />
     <Compile Include="TestCharacterBuilder.cs" />
     <Compile Include="TraitInterfaces.cs" />
     <Compile Include="Trait.cs" />
@@ -63,9 +62,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StringWriterWithEncoding\StringWriterWithEncoding.csproj">
+    <ProjectReference Include="..\StringWriterWithEncoding\DataTypes.csproj">
       <Project>{e8420222-2de0-42d7-b217-86390b71a866}</Project>
-      <Name>StringWriterWithEncoding</Name>
+      <Name>DataTypes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

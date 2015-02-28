@@ -1,4 +1,4 @@
-﻿namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls
+﻿namespace Syndaryl.Windows.Forms
 {
     partial class LabeledTextBox
     {

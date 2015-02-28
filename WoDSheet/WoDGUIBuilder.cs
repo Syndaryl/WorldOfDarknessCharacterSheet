@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Games.RPG.WoDCharacterData;
 using System.Drawing;
 using System.Drawing.Imaging;
-using Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls;
+using Syndaryl.Windows.Forms;
 
 namespace Games.RPG.WoDSheet {
     class WoDGUIBuilder {

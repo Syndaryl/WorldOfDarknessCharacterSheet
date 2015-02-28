@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls {
+namespace Syndaryl.Windows.Forms {
 
     public class NameTextEventArgs : EventArgs {
         #region Fields

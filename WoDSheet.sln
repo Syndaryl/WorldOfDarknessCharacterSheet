@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDSheetGUI", "WoDSheet\WoD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoDCharacterData", "WoDCharacterData\WoDCharacterData.csproj", "{23B5FC4C-C9A8-418E-9B81-3EB33EAA7F46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringWriterWithEncoding", "StringWriterWithEncoding\StringWriterWithEncoding.csproj", "{E8420222-2DE0-42D7-B217-86390B71A866}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "StringWriterWithEncoding\DataTypes.csproj", "{E8420222-2DE0-42D7-B217-86390B71A866}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotControls", "DotControls\DotControls.csproj", "{1968C838-4373-4CF6-94E0-92B0C912AAC7}"
 EndProject

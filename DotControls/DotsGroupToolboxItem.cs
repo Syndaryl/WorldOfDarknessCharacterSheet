@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls;
+using Syndaryl.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Runtime.Serialization;
 
-namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls
+namespace Syndaryl.Windows.Forms
 {
     [Serializable]
     [System.Security.Permissions.PermissionSetAttribute(System.Security.Permissions.SecurityAction.InheritanceDemand, Name = "FullTrust")]

@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
-using Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls;
+using Syndaryl.Windows.Forms;
 using Syndaryl.Games.CharacterGeneration.WorldOfDarkness.Helpers;
 
-namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness
+namespace Syndaryl.Windows.Forms
 {
 
     //[DesignerAttribute(typeof(DotsGroupControlDesigner))]
@@ -77,6 +77,22 @@ namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness
             {
                 radioButtons[i].Checked = false;
             }
+
+        }       
+
+        #region Events
+        public event EventHandler<NumericChangeEventArgs> OnEntryUpdate;
+        private void RaiseUpdate(int value) {
+            EventHandler<NumericChangeEventArgs> handler = OnEntryUpdate;
+            if (handler != null) {
+                handler(null, new NumericChangeEventArgs(value));
+            }
         }
+
+        private void Entry_TextChanged(object sender, EventArgs e) {
+            RaiseUpdate(Dots);
+        }
+
+        #endregion Events
     }
 }

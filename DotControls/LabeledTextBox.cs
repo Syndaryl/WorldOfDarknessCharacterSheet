@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotControls
+namespace Syndaryl.Windows.Forms
 {
     public partial class LabeledTextBox : UserControl
     {

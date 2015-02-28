@@ -1,4 +1,4 @@
-﻿namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness
+﻿namespace Syndaryl.Windows.Forms
 {
     partial class DotsSpecialty
     {
@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dotsGroup1 = new Syndaryl.Games.CharacterGeneration.WorldOfDarkness.DotsGroup();
+            this.dotsGroup1 = new Syndaryl.Windows.Forms.DotsGroup();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Syndaryl.Games.CharacterGeneration.WorldOfDarkness
+namespace Syndaryl.Windows.Forms
 {
     class RadioButtonWithCount : RadioButton
     {
