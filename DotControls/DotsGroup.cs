@@ -19,6 +19,7 @@ namespace Syndaryl.Windows.Forms
     {
         public int Dots { get; set; }
         public bool CanBeZero { get; set; }
+        System.Windows.Forms.ToolTip ToolTip;
 
         internal RadioButtonWithCount[] radioButtons;
         public DotsGroup()
@@ -30,6 +31,7 @@ namespace Syndaryl.Windows.Forms
             Dots = dots;
             GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
             CanBeZero = false;
+            ToolTip = new System.Windows.Forms.ToolTip();
         }
 
         public void SetupDotsTable()
@@ -72,6 +74,8 @@ namespace Syndaryl.Windows.Forms
             radioButtons[d].Text = "";
             radioButtons[d].Margin = padding;
             radioButtons[d].Padding = padding;
+            if (CanBeZero)
+                ToolTip.SetToolTip(radioButtons[d], "CTRL-Click to Uncheck");
             this.Controls.Add(radioButtons[d]);
             return radioButtons[d];
         }
