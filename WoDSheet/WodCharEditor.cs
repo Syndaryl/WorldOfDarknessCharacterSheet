@@ -23,31 +23,32 @@ namespace Games.RPG.WoDSheet
 
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
-            openCharacter.ShowDialog();
-            string file = openCharacter.FileName;
-            //StatusBar.TextTrait = "Opening character from " + file;
-            StatusLabel.Text = "Opening character from " + file;
-            try
-            {
-                Character = new WoDCharacterData.WoDCharacter(FromFile: file);
-                //LayoutManager = WoDGUIBuilder.Build(Character, LayoutManager);
-                StatusLabel.Text = "Opened " + file;
-            }
-            catch (Exception OpeningException)
-            {
-                MessageBox.Show(OpeningException.ToString());
-                Character = null;
-                StatusLabel.Text = "Failed to open " + file;
+            DialogResult result = openCharacter.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK) {
+                string file = openCharacter.FileName;
+                //StatusBar.TextTrait = "Opening character from " + file;
+                StatusLabel.Text = "Opening character from " + file;
+                try {
+                    Character = new WoDCharacterData.WoDCharacter(FromFile: file);
+                    //LayoutManager = WoDGUIBuilder.Build(Character, LayoutManager);
+                    StatusLabel.Text = "Opened " + file;
+                } catch (Exception OpeningException) {
+                    MessageBox.Show(OpeningException.ToString());
+                    Character = null;
+                    StatusLabel.Text = "Failed to open " + file;
+                } 
             }
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            saveCharacter.ShowDialog();
-            string file = saveCharacter.FileName;
-            StatusLabel.Text = "Saving character to " + file;
-            Character.Save(ToFile: file);
-            StatusLabel.Text = "Saved character to " + file;
+            DialogResult result = saveCharacter.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK) {
+                string file = saveCharacter.FileName;
+                StatusLabel.Text = "Saving character to " + file;
+                Character.Save(ToFile: file);
+                StatusLabel.Text = "Saved character to " + file;
+            }
             
         }
 

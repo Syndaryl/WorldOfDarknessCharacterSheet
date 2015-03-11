@@ -68,7 +68,7 @@ namespace Syndaryl.Windows.Forms
             radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
             radioButtons[d].AutoCheck = false;
             radioButtons[d].MouseClick += DotsGroup_Click;
-            radioButtons[d].MouseDoubleClick += DotsGroup_DoubleClick;
+            //radioButtons[d].MouseDoubleClick += DotsGroup_DoubleClick;
             radioButtons[d].Text = "";
             radioButtons[d].Margin = padding;
             radioButtons[d].Padding = padding;
@@ -101,10 +101,21 @@ namespace Syndaryl.Windows.Forms
             }
         }
 
-        public void DotsGroup_Click(object sender, EventArgs e) {
+        //private void DotsGroup_Click(object sender, MouseEventArgs e) {
+        //    throw new NotImplementedException();
+        //}
+
+        public void DotsGroup_Click(object sender, MouseEventArgs e) {
             RadioButtonWithCount button = (RadioButtonWithCount)sender;
-            lock (radioButtons) { 
-                SetRadioButtons(button.Index);
+            lock (radioButtons) {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left && ModifierKeys == Keys.Control) {
+                    if (CanBeZero)
+                        SetRadioButtons(button.Index - 1);
+                    else
+                        SetRadioButtons(Math.Max(button.Index - 1, 0));
+                }
+                else
+                    SetRadioButtons(button.Index);
             }
         }
 

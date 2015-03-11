@@ -76,6 +76,7 @@ namespace Syndaryl.Windows.Forms
             // 
             // dotsGroup1
             // 
+            this.dotsGroup1.CanBeZero = false;
             this.dotsGroup1.ColumnCount = 1;
             this.dotsGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.dotsGroup1.Dock = System.Windows.Forms.DockStyle.Fill;
