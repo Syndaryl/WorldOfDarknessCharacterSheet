@@ -18,9 +18,44 @@ namespace Games.RPG.WoDCharacterData
             SetupAbilities(Char);
             SetupAdvantages(Char);
             SetupWerewolfTraits(Char);
+            SetupRankHealth(Char);
 
             return Char;
         }
+
+        private static void SetupRankHealth(WoDCharacter Char) {
+            TraitGroup Abilities = new TraitGroup(
+                Name: "",
+                ColumnLabels: new List<string>(),
+                Children: new List<Trait>(),
+                ChildGroups: new List<TraitGroup>
+                {
+                    new TraitGroup( // Reknown and Rank
+                        Name: "Rank",
+                        Orientation: "TopToBottom", Children: new List<Trait>{
+                                new TextTrait(),
+                        }, ColumnLabels: new List<string>(), ChildGroups: new List<TraitGroup>()
+                    ),
+                    new TraitGroup( // Rage Gnosis Willpower
+                        Name: "",
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{}, ColumnLabels: new List<string>(), Children: new List<Trait>()
+                    ),
+                    new TraitGroup(
+                        Name: "Health",
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>(), Children: new List<Trait>{
+                            new WoundRating("Bruised",0),
+                            new WoundRating("Hurt",-1),
+                            new WoundRating("Injured",-1),
+                            new WoundRating("Wounded",-2),
+                            new WoundRating("Mauled",-2),
+                            new WoundRating("Crippled",-5),
+                            new WoundRating("Incapacitated",0),
+                        }, ColumnLabels: new List<string>()
+                    )
+                });
+            Char.TraitGroups.Add(Abilities);
+        }
+
         private static void SetupWerewolfTraits(WoDCharacter Char) {
             TraitGroup Abilities = new TraitGroup(
                 Name: "Traits",
@@ -30,22 +65,11 @@ namespace Games.RPG.WoDCharacterData
                 {
                     new TraitGroup( // Reknown and Rank
                         Name: "",
-                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{
-                            new TraitGroup(
-                                Name: "Reknown",
-                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
+                        Orientation: "TopToBottom", Children: new List<Trait>{
                                     new NamedRatingWithTempValue(Name: "Glory", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
                                     new NamedRatingWithTempValue(Name: "Honor", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
                                     new NamedRatingWithTempValue(Name: "Wisdom", Rating: 0, Temporary: 0, Minimum: 0, Maximum: 10 ),
-                                }
-                            ),
-                            new TraitGroup(
-                                Name: "Rank",
-                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                                    new TextTrait(),
-                                }
-                            ),
-                        }, ColumnLabels: new List<string>(), Children: new List<Trait>()
+                        }, ColumnLabels: new List<string>(), ChildGroups: new List<TraitGroup>()
                     ),
                     new TraitGroup( // Rage Gnosis Willpower
                         Name: "",
@@ -56,27 +80,10 @@ namespace Games.RPG.WoDCharacterData
                         }
                     ),
                     new TraitGroup(
-                        Name: "", // Health and XP
-                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>{
-                            new TraitGroup(
-                                Name: "Health",
-                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                                    new WoundRating("Bruised",0),
-                                    new WoundRating("Hurt",-1),
-                                    new WoundRating("Injured",-1),
-                                    new WoundRating("Wounded",-2),
-                                    new WoundRating("Mauled",-2),
-                                    new WoundRating("Crippled",-5),
-                                    new WoundRating("Incapacitated",0),
-                                }
-                            ),
-                            new TraitGroup(
-                                Name: "Experience",
-                                ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                                    new TextTrait(),
-                                }
-                            ),
-                        }, ColumnLabels: new List<string>(), Children: new List<Trait>()
+                        Name: "Experience",
+                        Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>(), Children: new List<Trait>{
+                                new TextTrait(),
+                        }, ColumnLabels: new List<string>()
                     )
                 });
             Char.TraitGroups.Add(Abilities);
