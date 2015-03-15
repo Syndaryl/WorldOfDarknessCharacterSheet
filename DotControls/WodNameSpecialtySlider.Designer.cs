@@ -1,6 +1,6 @@
 ﻿namespace Games.RPG.WoDSheet
 {
-    partial class WodSlider
+    partial class WodNameSpecialtySlider
     {
         /// <summary> 
         /// Required designer variable.
@@ -98,7 +98,7 @@
             this.labelValue.Text = "1";
             this.labelValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // WodSlider
+            // WodNameSpecialtySlider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

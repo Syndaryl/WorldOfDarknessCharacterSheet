@@ -70,11 +70,11 @@
     <Compile Include="RadioButtonWithCount.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WodSlider.cs">
+    <Compile Include="WodNameSpecialtySlider.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WodSlider.Designer.cs">
-      <DependentUpon>WodSlider.cs</DependentUpon>
+    <Compile Include="WodNameSpecialtySlider.Designer.cs">
+      <DependentUpon>WodNameSpecialtySlider.cs</DependentUpon>
     </Compile>
     <Compile Include="WoDWoundCheckboxButton.cs">
       <SubType>UserControl</SubType>
@@ -90,8 +90,8 @@
     <EmbeddedResource Include="LabeledTextBox.resx">
       <DependentUpon>LabeledTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WodSlider.resx">
-      <DependentUpon>WodSlider.cs</DependentUpon>
+    <EmbeddedResource Include="WodNameSpecialtySlider.resx">
+      <DependentUpon>WodNameSpecialtySlider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WoDWoundCheckboxButton.resx">
       <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
