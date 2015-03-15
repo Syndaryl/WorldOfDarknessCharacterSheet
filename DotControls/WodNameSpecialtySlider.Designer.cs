@@ -31,8 +31,8 @@
             this.Flow = new System.Windows.Forms.FlowLayoutPanel();
             this.labelTrait = new System.Windows.Forms.Label();
             this.textBoxSpecialty = new System.Windows.Forms.TextBox();
-            this.trackBarScore = new System.Windows.Forms.TrackBar();
             this.labelValue = new System.Windows.Forms.Label();
+            this.trackBarScore = new System.Windows.Forms.TrackBar();
             this.Flow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarScore)).BeginInit();
             this.SuspendLayout();
@@ -42,13 +42,13 @@
             this.Flow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Flow.Controls.Add(this.labelTrait);
             this.Flow.Controls.Add(this.textBoxSpecialty);
-            this.Flow.Controls.Add(this.trackBarScore);
             this.Flow.Controls.Add(this.labelValue);
+            this.Flow.Controls.Add(this.trackBarScore);
             this.Flow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Flow.Location = new System.Drawing.Point(0, 0);
             this.Flow.Margin = new System.Windows.Forms.Padding(2);
             this.Flow.Name = "Flow";
-            this.Flow.Size = new System.Drawing.Size(355, 64);
+            this.Flow.Size = new System.Drawing.Size(233, 68);
             this.Flow.TabIndex = 3;
             // 
             // labelTrait
@@ -66,7 +66,6 @@
             // 
             // textBoxSpecialty
             // 
-            this.Flow.SetFlowBreak(this.textBoxSpecialty, true);
             this.textBoxSpecialty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSpecialty.Location = new System.Drawing.Point(87, 2);
             this.textBoxSpecialty.Margin = new System.Windows.Forms.Padding(2);
@@ -75,28 +74,29 @@
             this.textBoxSpecialty.TabIndex = 1;
             this.textBoxSpecialty.TextChanged += new System.EventHandler(this.textBoxSpecialty_TextChanged);
             // 
+            // labelValue
+            // 
+            this.labelValue.AutoSize = true;
+            this.labelValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Flow.SetFlowBreak(this.labelValue, true);
+            this.labelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValue.Location = new System.Drawing.Point(207, 0);
+            this.labelValue.Name = "labelValue";
+            this.labelValue.Size = new System.Drawing.Size(18, 28);
+            this.labelValue.TabIndex = 4;
+            this.labelValue.Text = "1";
+            this.labelValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // trackBarScore
             // 
             this.trackBarScore.Location = new System.Drawing.Point(2, 30);
             this.trackBarScore.Margin = new System.Windows.Forms.Padding(2);
             this.trackBarScore.Maximum = 5;
             this.trackBarScore.Name = "trackBarScore";
-            this.trackBarScore.Size = new System.Drawing.Size(137, 45);
+            this.trackBarScore.Size = new System.Drawing.Size(223, 45);
             this.trackBarScore.TabIndex = 2;
             this.trackBarScore.Value = 1;
             this.trackBarScore.Scroll += new System.EventHandler(this.trackBarScore_Scroll);
-            // 
-            // labelValue
-            // 
-            this.labelValue.AutoSize = true;
-            this.labelValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValue.Location = new System.Drawing.Point(144, 28);
-            this.labelValue.Name = "labelValue";
-            this.labelValue.Size = new System.Drawing.Size(18, 49);
-            this.labelValue.TabIndex = 4;
-            this.labelValue.Text = "1";
-            this.labelValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WodNameSpecialtySlider
             // 
@@ -105,8 +105,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.Flow);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "WodSlider";
-            this.Size = new System.Drawing.Size(355, 64);
+            this.Name = "WodNameSpecialtySlider";
+            this.Size = new System.Drawing.Size(233, 68);
             this.Flow.ResumeLayout(false);
             this.Flow.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarScore)).EndInit();

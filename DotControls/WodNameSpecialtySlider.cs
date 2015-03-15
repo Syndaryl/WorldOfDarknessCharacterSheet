@@ -71,21 +71,16 @@ namespace Games.RPG.WoDSheet
             RaiseUpdate(trackBarScore.Value, textBoxSpecialty.Text);
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBoxSpecialty_TextChanged(object sender, EventArgs e)
         {
             RaiseUpdate(trackBarScore.Value, textBoxSpecialty.Text);
         }
 
         #region Events
-        public event EventHandler<NameTextRatingEventArgs> OnChecked;
+        public event EventHandler<NameTextRatingEventArgs> OnUpdate;
         private void RaiseUpdate(int value, string specialty)
         {
-            EventHandler<NameTextRatingEventArgs> handler = OnChecked;
+            EventHandler<NameTextRatingEventArgs> handler = OnUpdate;
             if (handler != null)
             {
                 handler(null, new NameTextRatingEventArgs(value, specialty));
