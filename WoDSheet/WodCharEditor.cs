@@ -71,5 +71,9 @@ namespace Games.RPG.WoDSheet
                 StatusLabel.Text = "Failed to open standard character!?!?";
             }
         }
+
+        private void resizeableManyStateCheckbox1_Click(object sender, EventArgs e) {
+
+        }
     }
 }

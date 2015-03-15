@@ -29,7 +29,7 @@ namespace Syndaryl.Windows.Forms {
         }
 
         private void RotateWoundState() {
-            if ((int)WoundState == Enum.GetValues(typeof(WoundStates)).Length) WoundState = 0;
+            if ((int)WoundState == Enum.GetValues(typeof(WoundStates)).Length-1) WoundState = 0;
                 else WoundState++;
             WoundButton.ImageIndex = (int)WoundState;
             RaiseUpdate(WoundState);

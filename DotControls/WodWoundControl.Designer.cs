@@ -26,7 +26,7 @@
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.WoundName = new System.Windows.Forms.Label();
             this.WoundPenalty = new System.Windows.Forms.Label();
-            this.WoundCheckbox = new WoDWoundCheckboxButton();
+            this.WoundCheckbox = new Syndaryl.Windows.Forms.WoDWoundCheckboxButton();
             this.FlowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,8 +47,8 @@
             this.WoundName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.WoundName.Location = new System.Drawing.Point(3, 0);
             this.WoundName.Name = "WoundName";
-            this.WoundName.Padding = new System.Windows.Forms.Padding(3, 7, 3, 7);
-            this.WoundName.Size = new System.Drawing.Size(52, 32);
+            this.WoundName.Padding = new System.Windows.Forms.Padding(3, 19, 3, 15);
+            this.WoundName.Size = new System.Drawing.Size(52, 52);
             this.WoundName.TabIndex = 0;
             this.WoundName.Text = "label1";
             this.WoundName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -67,6 +67,8 @@
             // 
             // WoundCheckbox
             // 
+            this.WoundCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.WoundCheckbox.AutoSize = true;
             this.WoundCheckbox.Location = new System.Drawing.Point(131, 1);
             this.WoundCheckbox.Margin = new System.Windows.Forms.Padding(1);
             this.WoundCheckbox.MaximumSize = new System.Drawing.Size(65, 65);
@@ -84,6 +86,7 @@
             this.Controls.Add(this.FlowPanel);
             this.Name = "WodWoundControl";
             this.Size = new System.Drawing.Size(204, 71);
+            this.Resize += new System.EventHandler(this.WodWoundControl_Resize);
             this.FlowPanel.ResumeLayout(false);
             this.FlowPanel.PerformLayout();
             this.ResumeLayout(false);

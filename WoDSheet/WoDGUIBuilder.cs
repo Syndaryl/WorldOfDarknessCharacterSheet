@@ -151,6 +151,7 @@ namespace Games.RPG.WoDSheet {
         private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
             Syndaryl.Windows.Forms.WodWoundControl wound = new WodWoundControl(woundRating.Name, woundRating.WoundPenalty, (int)woundRating.WoundState);
             location.Controls.Add(wound);
+            wound.Width = NiceWidth(location, wound);
             wound.OnCheck += woundRating.Wound_Update;
         }
         private static void handrollWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
