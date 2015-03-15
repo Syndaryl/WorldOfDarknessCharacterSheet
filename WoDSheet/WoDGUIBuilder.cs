@@ -105,11 +105,22 @@ namespace Games.RPG.WoDSheet {
                     try { AddTextSlider(location, (NameTextRating)item); } catch (Exception WoDSliderCreationException) { MessageBox.Show(WoDSliderCreationException.ToString()); }
                 else if (TestType<NamedText>(item) > -1)
                     try { AddNamedText(location, (NamedText)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
+                else if (TestType<TextTrait>(item) > -1) try { AddTextBox(location, (TextTrait)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
                 //else if (TestType<WoundRating>(item) > -1)
                 //    try { AddWoundRating(location, (WoundRating)item); } catch (Exception WoDWoundLevelCreationException) { MessageBox.Show(WoDWoundLevelCreationException.ToString()); }
+
                 else if (TestType<INamedTrait>(item) > -1)
                     AddLabel(((INamedTrait)item).Name, location, false);
             }
+        }
+
+        private static void AddTextBox(FlowLayoutPanel location, TextTrait textTrait) {
+            TextBox Text = new TextBox();
+            location.Controls.Add(Text);
+            Text.Text = textTrait.Text;
+            Text.Width = Text.PreferredSize.Width;
+            Text.Anchor = AnchorStyles.Right | AnchorStyles.Left;
+            Text.TextChanged += textTrait.Text_TextChanged;
         }
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
@@ -124,7 +135,7 @@ namespace Games.RPG.WoDSheet {
             holder.Controls.Add(Text);
             Text.Text = namedText;
             Text.Width = TextWidth;
-            Text.Anchor = AnchorStyles.Right;
+            Text.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             return Text;
         }
 
