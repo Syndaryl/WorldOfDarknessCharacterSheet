@@ -7,6 +7,7 @@ using Games.RPG.WoDCharacterData;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Syndaryl.Windows.Forms;
+using Games.RPG.WoDCharacterData;
 
 namespace Games.RPG.WoDSheet {
     class WoDGUIBuilder {
@@ -147,8 +148,12 @@ namespace Games.RPG.WoDSheet {
             Text.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             return Text;
         }
-
         private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
+            Syndaryl.Windows.Forms.WodWoundControl wound = new WodWoundControl(woundRating.Name, woundRating.WoundPenalty, (int)woundRating.WoundState);
+            location.Controls.Add(wound);
+            wound.OnCheck += woundRating.Wound_Update;
+        }
+        private static void handrollWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
             FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
 
             holder.SuspendLayout();

@@ -1,4 +1,4 @@
-﻿namespace Games.RPG.WoDCharacterData {
+﻿namespace Syndaryl.Windows.Forms {
     partial class WoDWoundCheckboxButton {
         /// <summary> 
         /// Required designer variable.

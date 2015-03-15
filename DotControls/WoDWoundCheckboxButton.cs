@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Syndaryl.Windows.Forms;
+using Games.RPG.WoDCharacterData;
 
-namespace Games.RPG.WoDCharacterData {
+namespace Syndaryl.Windows.Forms {
     public partial class WoDWoundCheckboxButton : UserControl {
 
         public WoundStates WoundState;

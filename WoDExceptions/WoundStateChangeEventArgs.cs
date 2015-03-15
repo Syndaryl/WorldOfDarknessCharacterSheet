@@ -9,6 +9,10 @@ namespace Syndaryl.Windows.Forms {
         public WoundStateChangeEventArgs(Byte State) {
             this.WoundState = State;
         }
+
+        public WoundStateChangeEventArgs(int State) {
+            this.WoundState = (Byte)State;
+        }
         public Byte WoundState { get; set; }
     }
 }
