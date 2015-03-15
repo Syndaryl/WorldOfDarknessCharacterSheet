@@ -94,6 +94,12 @@
     <Compile Include="WoDWoundCheckboxButton.Designer.cs">
       <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="WodWoundControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WodWoundControl.Designer.cs">
+      <DependentUpon>WodWoundControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LabeledDotsSpecialty.resx">
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WoDWoundCheckboxButton.resx">
       <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WodWoundControl.resx">
+      <DependentUpon>WodWoundControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
