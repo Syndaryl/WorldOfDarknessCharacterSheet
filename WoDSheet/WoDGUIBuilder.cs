@@ -258,7 +258,7 @@ namespace Games.RPG.WoDSheet {
 
         private static void AddBanner(WoDCharacter Character, FlowLayoutPanel parent) {
             try {
-                AddName(Character, parent);
+                //AddName(Character, parent);
                 Bitmap BannerGraphic = new Bitmap(Character.Graphic);
                 PictureBox Banner = new PictureBox();
 
@@ -274,7 +274,7 @@ namespace Games.RPG.WoDSheet {
                 //Banner.Dock = DockStyle.Fill;
                 Banner.BorderStyle = BorderStyle.Fixed3D;
             } catch (Exception ImageCreationException) {
-                System.Windows.Forms.MessageBox.Show(ImageCreationException.ToString());
+                //System.Windows.Forms.MessageBox.Show(ImageCreationException.ToString());
                 AddName(Character, parent);
             }
         }
