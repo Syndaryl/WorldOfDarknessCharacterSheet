@@ -105,13 +105,22 @@ namespace Games.RPG.WoDSheet {
                     try { AddTextSlider(location, (NameTextRating)item); } catch (Exception WoDSliderCreationException) { MessageBox.Show(WoDSliderCreationException.ToString()); }
                 else if (TestType<NamedText>(item) > -1)
                     try { AddNamedText(location, (NamedText)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
+                else if (TestType<UnnamedTextRating>(item) > -1) try { AddTextRating(location, (UnnamedTextRating)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
+                
                 else if (TestType<TextTrait>(item) > -1) try { AddTextBox(location, (TextTrait)item); } catch (Exception WoDNamedTextCreationException) { MessageBox.Show(WoDNamedTextCreationException.ToString()); }
-                //else if (TestType<WoundRating>(item) > -1)
-                //    try { AddWoundRating(location, (WoundRating)item); } catch (Exception WoDWoundLevelCreationException) { MessageBox.Show(WoDWoundLevelCreationException.ToString()); }
+                else if (TestType<WoundRating>(item) > -1)
+                    try { AddWoundRating(location, (WoundRating)item); } catch (Exception WoDWoundLevelCreationException) { MessageBox.Show(WoDWoundLevelCreationException.ToString()); }
 
                 else if (TestType<INamedTrait>(item) > -1)
                     AddLabel(((INamedTrait)item).Name, location, false);
             }
+        }
+
+        private static void AddTextRating(FlowLayoutPanel location, UnnamedTextRating unnamedTextRating) {
+            WodTextSlider slider = new WodTextSlider(Specialty: unnamedTextRating.Text, Rating: unnamedTextRating.Rating);
+            location.Controls.Add(slider);
+            slider.OnUpdate += unnamedTextRating.boundControl_Update;
+            
         }
 
         private static void AddTextBox(FlowLayoutPanel location, TextTrait textTrait) {
@@ -176,7 +185,7 @@ namespace Games.RPG.WoDSheet {
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
             WodNameSpecialtySlider textSlider = new WodNameSpecialtySlider(
                 item.Name,
-                SpecialtyText: item.Text,
+                Specialty: item.Text,
                 Rating: item.Rating);
             location.Controls.Add(textSlider);
             textSlider.OnUpdate += item.boundControl_Update;

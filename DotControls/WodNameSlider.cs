@@ -10,7 +10,7 @@ using Syndaryl.Windows.Forms;
 
 namespace Games.RPG.WoDSheet
 {
-    public partial class WodNameSpecialtySlider : UserControl
+    public partial class WodNameSlider : UserControl
     {
         private WoDCharacterData.Bounded<int> Rating;
         private int preferredHeight = 25;
@@ -43,17 +43,16 @@ namespace Games.RPG.WoDSheet
             }
         }
 
-        public WodNameSpecialtySlider()
+        public WodNameSlider()
         {
             InitializeComponent();
         }
 
-        public WodNameSpecialtySlider(string Name, string Specialty, WoDCharacterData.Bounded<int> Rating)
+        public WodNameSlider(string Name, string Specialty, WoDCharacterData.Bounded<int> Rating)
         {
             this.Rating = Rating;
             InitializeComponent();
             labelTrait.Text = Name;
-            textBoxSpecialty.Text = Specialty;
             UpdateTrackbar();
         }
 
@@ -68,13 +67,9 @@ namespace Games.RPG.WoDSheet
         private void trackBarScore_Scroll(object sender, EventArgs e)
         {
             labelValue.Text = trackBarScore.Value.ToString();
-            RaiseUpdate(trackBarScore.Value, textBoxSpecialty.Text);
+            RaiseUpdate(trackBarScore.Value, "");
         }
 
-        private void textBoxSpecialty_TextChanged(object sender, EventArgs e)
-        {
-            RaiseUpdate(trackBarScore.Value, textBoxSpecialty.Text);
-        }
 
         #region Events
         public event EventHandler<NameTextRatingEventArgs> OnUpdate;
