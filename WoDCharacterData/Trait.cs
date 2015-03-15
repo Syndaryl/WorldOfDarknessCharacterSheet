@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syndaryl.Windows.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,7 +85,7 @@ namespace Games.RPG.WoDCharacterData
             this.Text = ((TextBox)sender).Text;
         }
 
-        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e) {
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e) {
             Text = e.TraitText;
             Rating.Value = e.Value;
         }
@@ -136,7 +137,7 @@ namespace Games.RPG.WoDCharacterData
         public void Text_TextChanged(object sender, EventArgs e) {
             this.Text = ((TextBox)sender).Text;
         }
-        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e)
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e)
         {
             Text = e.TraitText;
             Rating.Value = e.Value;
@@ -180,7 +181,7 @@ namespace Games.RPG.WoDCharacterData
             this.Rating = new Bounded<int>(Rating, Minimum, Maximum);
             this.TemporaryValue = new Bounded<int>(Temporary, Minimum, Maximum);
         }
-        public void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e) {
+        public void boundControl_Update(object sender, NameTextRatingEventArgs e) {
             //Text = e.TraitText;
             Rating.Value = e.Value;
         }
@@ -225,7 +226,7 @@ namespace Games.RPG.WoDCharacterData
         private int woundPenalty = 0;
 
         public void Wound_Update(object sender, WoundStateChangeEventArgs e) {
-            this.WoundState = e.WoundState;
+            this.WoundState = (WoundStates)e.WoundState;
         }
 
 

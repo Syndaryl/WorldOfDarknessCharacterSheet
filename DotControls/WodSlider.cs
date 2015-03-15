@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Syndaryl.Windows.Forms;
 
 namespace Games.RPG.WoDSheet
 {
@@ -93,34 +94,6 @@ namespace Games.RPG.WoDSheet
 
         #endregion Events
 
-    }
-    public class NameTextRatingEventArgs : EventArgs
-    {
-        #region Fields
-        private string text;
-        private int tvalue;
-        #endregion Fields
-
-        #region Constructors
-        public NameTextRatingEventArgs(int value, string traitText = "")
-        {
-            TraitText = traitText;
-            Value = value;
-        }
-        #endregion Constructors
-
-        #region Properties
-        public string TraitText
-        {
-            get { return text; }
-            set { text = value; }
-        }
-
-        public int Value {
-            get { return tvalue; }
-            set { tvalue = value; }
-        }
-        #endregion Properties
     }
 
 }

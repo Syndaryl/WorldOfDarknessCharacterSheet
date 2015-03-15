@@ -39,23 +39,24 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static FlowLayoutPanel MakePrimarySection(TraitGroup group, Panel parent) {
-            FlowLayoutPanel ChildItems;
-            ChildItems = NewFlowPanel(parent, parent.Width);
-            ChildItems.SuspendLayout();
-
-            AddLabel(group.Name, ChildItems, true);
+            FlowLayoutPanel PrimaryPanel;
+            PrimaryPanel = NewFlowPanel(parent, parent.Width);
+            PrimaryPanel.SuspendLayout();
+            PrimaryPanel.Width = NiceWidth(parent, PrimaryPanel);
+            AddLabel(group.Name, PrimaryPanel, true);
             if (group.ChildGroups.Count > 0) {
-                FlowLayoutPanel ChildHolder = MakeChildPanels(group, ChildItems);
+                FlowLayoutPanel ChildHolder = MakeChildPanels(group, PrimaryPanel);
                 ChildHolder.Width = ChildHolder.PreferredSize.Width;
+                //ChildHolder.Width = NiceWidth(parent, ChildHolder) - 30;
                 ChildHolder.Height = ChildHolder.PreferredSize.Height;
             }
             else {
-                MakeChildTraits(group, ChildItems);
+                MakeChildTraits(group, PrimaryPanel);
             }
-            ChildItems.Height = ChildItems.PreferredSize.Height;
+            PrimaryPanel.Height = PrimaryPanel.PreferredSize.Height;
 
-            ChildItems.ResumeLayout();
-            return ChildItems;
+            PrimaryPanel.ResumeLayout();
+            return PrimaryPanel;
         }
         private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent) {
             FlowLayoutPanel ChildItems;
@@ -112,24 +113,6 @@ namespace Games.RPG.WoDSheet {
         }
 
         private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
-            //FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
-            ////holder.SuspendLayout();
-            //holder.BorderStyle = BorderStyle.None;
-            //holder.Padding = new Padding(0);
-            //label Name = AddLabel(namedText.Name, holder, true);
-            //int TextWidth = holder.Width - 20;
-            //if (Name != null) {
-            //    Name.Padding = new Padding(0);
-            //    Name.BorderStyle = BorderStyle.None;
-            //    Name.TextAlign = ContentAlignment.MiddleLeft;
-            //    Name.AutoSize = true;
-            //    TextWidth = TextWidth - Name.Width;
-            //}
-            //TextBox text = MakeTextBox(namedText.text, holder, TextWidth);
-            //if (Name != null && text != null)
-            //    Name.Height = text.Height;
-            //holder.Height = holder.PreferredSize.Height;
-            ////holder.ResumeLayout();
             LabeledTextBox Text = new LabeledTextBox(label: namedText.Name, text: namedText.Text, parent: location, bold: true);
             if (Text != null)
                 Text.OnEntryUpdate += namedText.Text_TextChanged;
@@ -180,11 +163,14 @@ namespace Games.RPG.WoDSheet {
             return Wound;
         }
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
-            WodSlider slider = new WodSlider(LabelText: item.Name, SpecialtyText: item.Text, Rating: item.Rating);
-            slider.OnChecked += item.slider_Update;
-            location.Controls.Add(slider);
-            int width = (int)(location.Size.Width - 10);
-            slider.Size = new Size(width, slider.PreferredHeight);
+            LabeledDotsSpecialty Dots = new LabeledDotsSpecialty(item.Name, 
+                specialty: item.Text, 
+                dotsmax: item.Rating.Max, 
+                dotsmin: item.Rating.Min, 
+                dots: item.Rating);
+            location.Controls.Add(Dots);
+            Dots.OnUpdate += item.boundControl_Update;
+
         }
 
         private static FlowLayoutPanel MakeChildPanels(TraitGroup group, FlowLayoutPanel parent) {
@@ -211,7 +197,7 @@ namespace Games.RPG.WoDSheet {
                 return null; // short circuit.
             try {
                 Label formLabel = new Label();
-                //formLabel.AutoSize = true;
+                //thisObject.AutoSize = true;
                 location.Controls.Add(formLabel);
                 formLabel.Text = text;
                 formLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -220,13 +206,13 @@ namespace Games.RPG.WoDSheet {
                 formLabel.Padding = new Padding(10);
                 //Font newfont = (Font) parent.Font.Clone();
                 //newfont.Bold = bold;
-                //formLabel.Font = (Font)parent.Font.Clone();
+                //thisObject.Font = (Font)parent.Font.Clone();
                 formLabel.Font = new Font(location.Font.FontFamily, location.Font.Size, bold ? FontStyle.Bold : FontStyle.Regular);
                 if (width == 0)
-                    width = (int)(location.Size.Width - 10);
+                    width = NiceWidth(location, formLabel);
                 formLabel.Size = new Size(width, formLabel.PreferredHeight);
                 return formLabel;
-                //formLabel.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
+                //thisObject.Anchor = (AnchorStyles.Left | AnchorStyles.Right);
             } catch (Exception LabelCreationException) {
                 MessageBox.Show(LabelCreationException.ToString());
                 return null;
@@ -237,7 +223,7 @@ namespace Games.RPG.WoDSheet {
             AddLabel(text, location, false, width);
         }
 
-        private static void AddName(WoDCharacter Character, Form displayForm) {
+        private static void AddName(WoDCharacter Character, Form parent) {
             try {
                 Label formLabel = new Label();
                 formLabel.Text = Character.Name;
@@ -245,14 +231,21 @@ namespace Games.RPG.WoDSheet {
                 formLabel.Tag = 0;
                 formLabel.Location = new Point(50, 50);
                 formLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-                formLabel.Size = new Size(formLabel.PreferredWidth, formLabel.PreferredHeight);
-                formLabel.AutoSize = true;
+                int newWidth = NiceWidth(parent, formLabel);
+                formLabel.Size = new Size(newWidth, formLabel.PreferredHeight);
+                //thisObject.AutoSize = true;
 
-                displayForm.Controls.Add(formLabel);
+                parent.Controls.Add(formLabel);
             } catch (Exception LabelCreationException) {
                 System.Windows.Forms.MessageBox.Show(LabelCreationException.ToString());
                 MessageBox.Show(LabelCreationException.ToString());
             }
+        }
+
+        private static int NiceWidth(Control parent, Control thisObject) {
+
+            int newWidth = (int)(parent.ClientSize.Width - parent.Padding.Horizontal - parent.Margin.Horizontal - thisObject.Margin.Horizontal - System.Windows.Forms.SystemInformation.VerticalScrollBarWidth);
+            return newWidth;
         }
 
         private static void AddName(WoDCharacter Character, FlowLayoutPanel result) {
@@ -263,16 +256,16 @@ namespace Games.RPG.WoDSheet {
             }
         }
 
-        private static void AddBanner(WoDCharacter Character, FlowLayoutPanel result) {
+        private static void AddBanner(WoDCharacter Character, FlowLayoutPanel parent) {
             try {
-                AddName(Character, result);
+                //AddName(Character, parent);
                 Bitmap BannerGraphic = new Bitmap(Character.Graphic);
                 PictureBox Banner = new PictureBox();
 
-                result.Controls.Add(Banner);
+                parent.Controls.Add(Banner);
                 Banner.Image = BannerGraphic;
                 Banner.Tag = 1;
-                int newWidth = (int)(result.Size.Width - 10);
+                int newWidth = NiceWidth(parent, Banner);
                 //int newHeight = (int)(((double)newWidth / (double)Banner.PreferredSize.Width) * (double)Banner.PreferredSize.Height);
                 Banner.Size = new Size(newWidth, 150);
                 Banner.AccessibleName = Character.Name;
@@ -281,8 +274,8 @@ namespace Games.RPG.WoDSheet {
                 //Banner.Dock = DockStyle.Fill;
                 Banner.BorderStyle = BorderStyle.Fixed3D;
             } catch (Exception ImageCreationException) {
-                System.Windows.Forms.MessageBox.Show(ImageCreationException.ToString());
-                AddName(Character, result);
+                //System.Windows.Forms.MessageBox.Show(ImageCreationException.ToString());
+                AddName(Character, parent);
             }
         }
 

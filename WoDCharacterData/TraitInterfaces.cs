@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syndaryl.Windows.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,6 @@ namespace Games.RPG.WoDCharacterData
     public interface IRatingTrait
     {
         Bounded<int> Rating { get; set; }
-        void slider_Update(object sender, Games.RPG.WoDSheet.NameTextRatingEventArgs e);
+        void boundControl_Update(object sender, NameTextRatingEventArgs e);
     }
 }

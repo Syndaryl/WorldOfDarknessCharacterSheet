@@ -48,32 +48,16 @@
     <Compile Include="TraitGroup.cs" />
     <Compile Include="WoDCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WodSlider.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WodSlider.Designer.cs">
-      <DependentUpon>WodSlider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WoDWoundCheckboxButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WoDWoundCheckboxButton.Designer.cs">
-      <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StringWriterWithEncoding\DataTypes.csproj">
       <Project>{e8420222-2de0-42d7-b217-86390b71a866}</Project>
       <Name>DataTypes</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="WodSlider.resx">
-      <DependentUpon>WodSlider.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WoDWoundCheckboxButton.resx">
-      <DependentUpon>WoDWoundCheckboxButton.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\WoDExceptions\WoDEvents.csproj">
+      <Project>{5b1e0a8c-7703-4e4e-8be6-e6fdd824e1e8}</Project>
+      <Name>WoDEvents</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

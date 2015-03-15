@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Syndaryl.Windows.Forms
 {
-    class RadioButtonWithCount : RadioButton
+    class RadioButtonWithCount : DoubleClickRadioButton
     {
         public int Index
         {

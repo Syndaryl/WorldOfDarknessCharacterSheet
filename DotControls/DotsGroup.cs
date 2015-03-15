@@ -18,6 +18,9 @@ namespace Syndaryl.Windows.Forms
     public class DotsGroup : TableLayoutPanel
     {
         public int Dots { get; set; }
+        public bool CanBeZero { get; set; }
+        System.Windows.Forms.ToolTip ToolTip;
+
         internal RadioButtonWithCount[] radioButtons;
         public DotsGroup()
             : this(5, 1)
@@ -27,6 +30,8 @@ namespace Syndaryl.Windows.Forms
         {
             Dots = dots;
             GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
+            CanBeZero = false;
+            ToolTip = new System.Windows.Forms.ToolTip();
         }
 
         public void SetupDotsTable()
@@ -46,41 +51,78 @@ namespace Syndaryl.Windows.Forms
             // ColumnStyle colStyle = new ColumnStyle(SizeType.Percent, colWidth);
 
             SizeF factor;
-
+            factor = new SizeF(1.5F, 1.5F);
+            Padding noPadding = new Padding(0);
             for (int d = 0; d < Dots; d++)
             {
-                radioButtons[d] = new RadioButtonWithCount(d);
-                radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
-                radioButtons[d].AutoCheck = false;
-                radioButtons[d].Click += DotsGroup_Click;
-                radioButtons[d].Text = "";
-                this.Controls.Add(radioButtons[d]);
-                factor = new SizeF(1.5F, 1.5F);
-                radioButtons[d].Scale(factor);
+                MakeRadioButton(noPadding, d);
             }
             Width = radioButtons[0].Width * Dots;
             Height = radioButtons[0].Height;
             this.FillRowStyles(SizeType.AutoSize, 1);
             this.FillColumnStyles(SizeType.Percent, colWidth);
+            //SetRadioButtons(Dots-1);
             ResumeLayout();
         }
 
-        public void DotsGroup_Click(object sender, EventArgs e)
-        {
-            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+        private RadioButtonWithCount MakeRadioButton(Padding padding, int d) {
+            radioButtons[d] = new RadioButtonWithCount(d);
+            radioButtons[d].CheckAlign = ContentAlignment.TopCenter;
+            radioButtons[d].AutoCheck = false;
+            radioButtons[d].MouseClick += DotsGroup_Click;
+            //radioButtons[d].MouseDoubleClick += DotsGroup_DoubleClick;
+            radioButtons[d].Text = "";
+            radioButtons[d].Margin = padding;
+            radioButtons[d].Padding = padding;
+            if (CanBeZero)
+                ToolTip.SetToolTip(radioButtons[d], "CTRL-Click to Uncheck");
+            this.Controls.Add(radioButtons[d]);
+            return radioButtons[d];
+        }
+
+        internal void SetRadioButtons(int index) {
+
             //button.Checked = !button.Checked;
-            for (int i = 0; i <= button.Index; i++)
-            {
+            for (int i = 0; i <= index; i++) {
                 radioButtons[i].Checked = true;
             }
-            for (int i = button.Index+1; i < radioButtons.Count(); i++)
-            {
+            for (int i = index + 1; i < radioButtons.Count(); i++) {
                 radioButtons[i].Checked = false;
             }
+            RaiseUpdate(index + 1);
+        }
 
-        }       
+        #region Events and Event Handlers
 
-        #region Events
+        private void DotsGroup_DoubleClick(object sender, EventArgs e) {
+            // Never gets called, sadpanda
+            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+            lock (radioButtons) { 
+                if (CanBeZero)
+                    SetRadioButtons(button.Index - 1);
+                else
+                    SetRadioButtons(Math.Max(button.Index - 1,0));
+            }
+        }
+
+        //private void DotsGroup_Click(object sender, MouseEventArgs e) {
+        //    throw new NotImplementedException();
+        //}
+
+        public void DotsGroup_Click(object sender, MouseEventArgs e) {
+            RadioButtonWithCount button = (RadioButtonWithCount)sender;
+            lock (radioButtons) {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left && ModifierKeys == Keys.Control) {
+                    if (CanBeZero)
+                        SetRadioButtons(button.Index - 1);
+                    else
+                        SetRadioButtons(Math.Max(button.Index - 1, 0));
+                }
+                else
+                    SetRadioButtons(button.Index);
+            }
+        }
+
         public event EventHandler<NumericChangeEventArgs> OnEntryUpdate;
         private void RaiseUpdate(int value) {
             EventHandler<NumericChangeEventArgs> handler = OnEntryUpdate;
@@ -89,10 +131,6 @@ namespace Syndaryl.Windows.Forms
             }
         }
 
-        private void Entry_TextChanged(object sender, EventArgs e) {
-            RaiseUpdate(Dots);
-        }
-
-        #endregion Events
+        #endregion Events and Event Handlers
     }
 }

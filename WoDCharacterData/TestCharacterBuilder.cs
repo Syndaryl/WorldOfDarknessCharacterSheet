@@ -183,6 +183,7 @@ namespace Games.RPG.WoDCharacterData
         }
 
         private static void SetupAttributes(WoDCharacter Char) {
+            NameTextRating Strength = new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4, Minimum: 1, Maximum: 5);
             TraitGroup Attributes = new TraitGroup(
                 Name: "Attributes",
                 ColumnLabels: new List<string>(),
@@ -192,7 +193,7 @@ namespace Games.RPG.WoDCharacterData
                     new TraitGroup(
                         Name: "Physical",
                         ChildGroups: new List<TraitGroup>(), ColumnLabels: new List<string>(), Children: new List<Trait>{
-                            new NameTextRating(Name: "Strength", Text: string.Empty, Rating: 4, Minimum: 1, Maximum: 5),
+                            Strength,
                             new NameTextRating(Name: "Dexterity", Text: string.Empty, Rating: 2, Minimum: 1, Maximum: 5),
                             new NameTextRating(Name: "Stamina", Text: string.Empty, Rating: 3, Minimum: 1, Maximum: 5)
                         }
