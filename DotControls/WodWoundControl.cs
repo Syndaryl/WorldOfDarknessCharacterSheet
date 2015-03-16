@@ -10,7 +10,6 @@ using Games.RPG.WoDCharacterData;
 
 namespace Syndaryl.Windows.Forms {
     public partial class WodWoundControl : UserControl {
-        private int woundStates;
 
         public WodWoundControl() {
             InitializeComponent();
@@ -22,7 +21,7 @@ namespace Syndaryl.Windows.Forms {
             InitializeComponent();
             WoundName.Text = name;
             WoundPenalty.Text = penalty!=0? penalty.ToString():"";
-            this.woundStates = woundStates;
+            WoundCheckbox.State = woundStates;
         }
 
         private void WoundCheckbox_Click(object sender, EventArgs e) {

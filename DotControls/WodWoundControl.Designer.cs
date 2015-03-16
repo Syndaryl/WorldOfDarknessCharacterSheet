@@ -71,13 +71,14 @@
             this.WoundCheckbox.DialogResult = System.Windows.Forms.DialogResult.None;
             this.WoundCheckbox.IsDefault = false;
             this.WoundCheckbox.Location = new System.Drawing.Point(133, 3);
-            this.WoundCheckbox.MaxState = ((uint)(3u));
+            this.WoundCheckbox.MaxState = ((3));
             this.WoundCheckbox.Name = "WoundCheckbox";
             this.WoundCheckbox.Points = ((System.Collections.Generic.List<System.Collections.Generic.List<System.Drawing.Point>>)(resources.GetObject("WoundCheckbox.Points")));
             this.WoundCheckbox.Size = new System.Drawing.Size(25, 25);
-            this.WoundCheckbox.State = ((uint)(0u));
+            this.WoundCheckbox.State = ((0));
             this.WoundCheckbox.TabIndex = 2;
             this.WoundCheckbox.Text = "wodWoundManystateCheckbox1";
+            this.WoundCheckbox.Click += new System.EventHandler(this.WoundCheckbox_Click);
             // 
             // WodWoundControl
             // 

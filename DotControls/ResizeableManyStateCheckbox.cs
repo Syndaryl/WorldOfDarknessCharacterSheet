@@ -10,8 +10,8 @@ using System.Windows.Forms;
 namespace Syndaryl.Windows.Forms {
     public partial class ResizeableManyStateCheckbox : Control, IButtonControl {
         #region Properties
-        public uint State { get; set; }
-        public uint MaxState { get; set; }
+        public int State { get; set; }
+        public int MaxState { get; set; }
 
         public bool IsDefault { get; set; }
 
@@ -36,6 +36,11 @@ namespace Syndaryl.Windows.Forms {
             Images = new ImageList();
             drawPen = new Pen(System.Drawing.Brushes.Black, 4);
             Points = new List<List<Point>>();
+            this.Click += ResizeableManyStateCheckbox_Click;
+        }
+
+        void ResizeableManyStateCheckbox_Click(object sender, EventArgs e) {
+            RotateState();
         }
 
         public DialogResult DialogResult {
@@ -51,11 +56,13 @@ namespace Syndaryl.Windows.Forms {
         }
 
         protected override void OnPaint(PaintEventArgs e) {
-            base.OnPaint(e);
+            //base.OnPaint(e);
             using (Graphics g = e.Graphics) {
                 g.DrawRectangle(drawPen, this.BoxRectangle);
-                if (Points.Count > (int)State && Points[(int)State].Count > 0)
+                if (Points.Count > (int)State && Points[(int)State].Count > 0) {
+                    g.DrawLine(drawPen, Points[(int)State][0], Points[(int)State].Last());
                     g.DrawPolygon(drawPen, Points[(int)State].ToArray());
+                }
             }
         }
 
@@ -65,7 +72,7 @@ namespace Syndaryl.Windows.Forms {
             }
         }
 
-        private void RotateWoundState() {
+        private void RotateState() {
             if (State == MaxState) State = 0;
             else State++;
             this.Invalidate();
@@ -79,7 +86,7 @@ namespace Syndaryl.Windows.Forms {
         }
         #region Events
         public event EventHandler<WoundStateChangeEventArgs> WoundUpdate;
-        private void RaiseUpdate(uint value) {
+        private void RaiseUpdate(int value) {
             EventHandler<WoundStateChangeEventArgs> handler = WoundUpdate;
             if (handler != null) {
                 handler(null, new WoundStateChangeEventArgs((byte)value));
@@ -87,5 +94,6 @@ namespace Syndaryl.Windows.Forms {
         }
 
         #endregion Events
+
     }
 }

@@ -43,13 +43,14 @@ namespace Games.RPG.WoDCharacterData
                     new TraitGroup(
                         Name: "Health",
                         Orientation: "TopToBottom", ChildGroups: new List<TraitGroup>(), Children: new List<Trait>{
-                            new WoundRating("Bruised",0),
+                            new WoundRating("Bruised",0,WoundStates.Aggravated),
+                            new WoundRating(Name:"Bruised", WoundPenalty: -20, WoundState: WoundStates.Aggravated),
                             new WoundRating("Hurt",-1),
                             new WoundRating("Injured",-1),
                             new WoundRating("Wounded",-2),
                             new WoundRating("Mauled",-2),
                             new WoundRating("Crippled",-5),
-                            new WoundRating("Incapacitated",0),
+                            new WoundRating("Incapacitated",-99),
                         }, ColumnLabels: new List<string>()
                     )
                 });

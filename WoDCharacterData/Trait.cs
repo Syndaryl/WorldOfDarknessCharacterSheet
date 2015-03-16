@@ -219,8 +219,8 @@ namespace Games.RPG.WoDCharacterData
             set {
                 if (value > 0) {
                     value = 0;
-                    woundPenalty = value;
                 }
+                woundPenalty = value;
             }
         }
         private int woundPenalty = 0;

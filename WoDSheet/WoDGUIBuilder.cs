@@ -7,7 +7,6 @@ using Games.RPG.WoDCharacterData;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Syndaryl.Windows.Forms;
-using Games.RPG.WoDCharacterData;
 
 namespace Games.RPG.WoDSheet {
     class WoDGUIBuilder {
