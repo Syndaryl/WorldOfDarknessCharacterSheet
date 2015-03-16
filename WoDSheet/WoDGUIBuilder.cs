@@ -17,6 +17,7 @@ namespace Games.RPG.WoDSheet {
                 root.Controls.Clear();
 
             root.SuspendLayout();
+            root.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
 
             AddBanner(Character, root);
 
@@ -37,13 +38,14 @@ namespace Games.RPG.WoDSheet {
             displayForm.Refresh();
         }
 
-        private static TableLayoutPanel MakePrimarySection(TraitGroup group, Panel parent) {
+        private static TableLayoutPanel MakePrimarySection(TraitGroup group, TableLayoutPanel parent) {
             TableLayoutPanel PrimaryPanel;
-            PrimaryPanel = NewPanel(parent, parent.Width);
+            PrimaryPanel = NewPanel(parent, FlowDirection.TopDown);
             PrimaryPanel.SuspendLayout();
             PrimaryPanel.Width = NiceWidth(parent, PrimaryPanel);
             AddLabel(group.Name, PrimaryPanel, true);
             if (group.ChildGroups.Count > 0) {
+                PrimaryPanel.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
                 TableLayoutPanel ChildHolder = MakeChildPanels(group, PrimaryPanel);
                 ChildHolder.Width = ChildHolder.PreferredSize.Width;
                 //ChildHolder.Width = NiceWidth(parent, ChildHolder) - 30;
@@ -57,12 +59,12 @@ namespace Games.RPG.WoDSheet {
             PrimaryPanel.ResumeLayout();
             return PrimaryPanel;
         }
-        private static TableLayoutPanel MakeSection(TraitGroup group, Panel parent) {
+        private static TableLayoutPanel MakeSection(TraitGroup group, TableLayoutPanel parent) {
             TableLayoutPanel ChildItems;
             FlowDirection direction;
             Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
 
-            ChildItems = NewPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight|| direction == FlowDirection.RightToLeft ) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            ChildItems = NewPanel(parent, direction);
 
             ChildItems.SuspendLayout();
 
@@ -80,13 +82,20 @@ namespace Games.RPG.WoDSheet {
             return ChildItems;
         }
 
-        private static TableLayoutPanel NewPanel(Panel location, int width) {
+        private static TableLayoutPanel NewPanel(TableLayoutPanel location, FlowDirection direction) {
             TableLayoutPanel flow = new TableLayoutPanel();
+            if (direction == FlowDirection.LeftToRight || direction == FlowDirection.RightToLeft)
+                flow.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
+            else
+                flow.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
             flow.SuspendLayout();
-            location.Controls.Add(flow);
+            //location.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
+            location.RowCount++;
+            location.Controls.Add(flow, 0, location.RowCount);
             flow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             //parent.Width = (int)(parent.Size.Width - 10);
-            flow.Width = width - 10;
+            //flow.Width = width - 10;
+            flow.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             flow.Padding = new System.Windows.Forms.Padding(10);
             flow.AutoScroll = true;
             //parent.AutoSize = true;
@@ -149,31 +158,6 @@ namespace Games.RPG.WoDSheet {
             wound.Width = NiceWidth(location, wound);
             wound.OnCheck += woundRating.Wound_Update;
         }
-        private static void handrollWoundRating(TableLayoutPanel location, WoundRating woundRating) {
-            TableLayoutPanel holder = NewPanel(location, location.Width);
-
-            holder.SuspendLayout();
-            holder.BorderStyle = BorderStyle.None;
-            holder.Padding = new Padding(0);
-
-            Label Name = AddLabel(woundRating.Name, holder, false);
-            if (Name != null) {
-                Name.Padding = new Padding(0);
-                Name.BorderStyle = BorderStyle.None;
-                Name.TextAlign = ContentAlignment.MiddleLeft;
-                Name.AutoSize = true;
-            }
-            Label Penalty = AddLabel(woundRating.WoundPenalty.ToString(), holder, false);
-            if (Penalty != null) {
-                Penalty.Padding = new Padding(0);
-                Penalty.BorderStyle = BorderStyle.None;
-                Penalty.AutoSize = true;
-            }
-
-            AddWoundCheckbox(holder, woundRating);
-
-            holder.ResumeLayout();
-        }
 
         private static WoDWoundCheckboxButton AddWoundCheckbox(TableLayoutPanel location, WoundRating woundRating) {
             WoDWoundCheckboxButton Wound = new WoDWoundCheckboxButton(woundRating.WoundState);
@@ -198,7 +182,7 @@ namespace Games.RPG.WoDSheet {
             TableLayoutPanel ChildItems;
             FlowDirection direction;
             Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
-            ChildItems = NewPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight || direction == FlowDirection.RightToLeft) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            ChildItems = NewPanel(parent, direction);
             ChildItems.SuspendLayout();
 
             foreach (TraitGroup item in group.ChildGroups) {
