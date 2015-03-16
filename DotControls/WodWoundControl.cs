@@ -13,7 +13,6 @@ namespace Syndaryl.Windows.Forms {
 
         public WodWoundControl() {
             InitializeComponent();
-            this.FlowPanel.Controls.Add(WoundCheckbox);
             // WoundCheckbox.Size = new Size(23, 23);
 
         }
@@ -41,13 +40,13 @@ namespace Syndaryl.Windows.Forms {
         #endregion Events
 
         private void WodWoundControl_Resize(object sender, EventArgs e) {
-            WoundName.Padding = new Padding(WoundName.Padding.Left, WoundName.Padding.Top,
-                this.ClientSize.Width - this.Padding.Horizontal - this.Margin.Horizontal 
-                    - WoundName.Margin.Horizontal - WoundName.Padding.Horizontal
-                    - WoundCheckbox.Width - WoundCheckbox.Padding.Horizontal
-                    - WoundPenalty.Width - WoundPenalty.Padding.Horizontal
-                    - System.Windows.Forms.SystemInformation.VerticalScrollBarWidth,
-                WoundName.Padding.Bottom);
+            //WoundName.Padding = new Padding(WoundName.Padding.Left, WoundName.Padding.Top,
+            //    this.ClientSize.Width - this.Padding.Horizontal - this.Margin.Horizontal 
+            //        - WoundName.Margin.Horizontal - WoundName.Padding.Horizontal
+            //        - WoundCheckbox.Width - WoundCheckbox.Padding.Horizontal
+            //        - WoundPenalty.Width - WoundPenalty.Padding.Horizontal
+            //        - System.Windows.Forms.SystemInformation.VerticalScrollBarWidth,
+            //    WoundName.Padding.Bottom);
         }
 
     }
