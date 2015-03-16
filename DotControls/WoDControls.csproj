@@ -46,6 +46,8 @@
     <Compile Include="DotsGroup.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="WodWoundManystateCheckboxTooboxItem.cs.cs" />
     <Compile Include="ResizeableManyStateCheckboxTooboxItem.cs" />
     <Compile Include="DotsGroupToolboxItem.cs" />
     <Compile Include="DoubleClickRadioButton.cs">
@@ -103,6 +105,9 @@
     </Compile>
     <Compile Include="WodWoundControl.Designer.cs">
       <DependentUpon>WodWoundControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WodWoundManystateCheckbox.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

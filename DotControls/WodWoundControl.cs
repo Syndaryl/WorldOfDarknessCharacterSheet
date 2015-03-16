@@ -14,6 +14,8 @@ namespace Syndaryl.Windows.Forms {
 
         public WodWoundControl() {
             InitializeComponent();
+            this.FlowPanel.Controls.Add(WoundCheckbox);
+            WoundCheckbox.Size = new Size(23, 23);
         }
 
         public WodWoundControl(string name, int penalty, int woundStates) {
@@ -24,7 +26,7 @@ namespace Syndaryl.Windows.Forms {
         }
 
         private void WoundCheckbox_Click(object sender, EventArgs e) {
-            RaiseUpdate((int)WoundCheckbox.WoundState);
+            RaiseUpdate((int)WoundCheckbox.State);
         }
 
         #region Events

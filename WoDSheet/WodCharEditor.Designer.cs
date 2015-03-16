@@ -48,10 +48,8 @@
             this.openCharacter = new System.Windows.Forms.OpenFileDialog();
             this.saveCharacter = new System.Windows.Forms.SaveFileDialog();
             this.WodFlowRoot = new System.Windows.Forms.FlowLayoutPanel();
-            this.resizeableManyStateCheckbox1 = new Syndaryl.Windows.Forms.ResizeableManyStateCheckbox();
             this.StatusBar.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.WodFlowRoot.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatusBar
@@ -220,7 +218,6 @@
             // 
             this.WodFlowRoot.AutoScroll = true;
             this.WodFlowRoot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.WodFlowRoot.Controls.Add(this.resizeableManyStateCheckbox1);
             this.WodFlowRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WodFlowRoot.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.WodFlowRoot.Location = new System.Drawing.Point(0, 25);
@@ -229,18 +226,6 @@
             this.WodFlowRoot.Size = new System.Drawing.Size(1472, 680);
             this.WodFlowRoot.TabIndex = 2;
             this.WodFlowRoot.WrapContents = false;
-            // 
-            // resizeableManyStateCheckbox1
-            // 
-            this.resizeableManyStateCheckbox1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.resizeableManyStateCheckbox1.IsDefault = false;
-            this.resizeableManyStateCheckbox1.Location = new System.Drawing.Point(3, 3);
-            this.resizeableManyStateCheckbox1.MaxState = ((uint)(0u));
-            this.resizeableManyStateCheckbox1.Name = "resizeableManyStateCheckbox1";
-            this.resizeableManyStateCheckbox1.Size = new System.Drawing.Size(83, 71);
-            this.resizeableManyStateCheckbox1.State = ((uint)(0u));
-            this.resizeableManyStateCheckbox1.TabIndex = 0;
-            this.resizeableManyStateCheckbox1.Text = "resizeableManyStateCheckbox1";
             // 
             // WoDCharEditor
             // 
@@ -262,7 +247,6 @@
             this.StatusBar.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.WodFlowRoot.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,7 +273,6 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripProgressBar StatusProgress;
         private System.Windows.Forms.FlowLayoutPanel WodFlowRoot;
-        private Syndaryl.Windows.Forms.ResizeableManyStateCheckbox resizeableManyStateCheckbox1;
 
     }
 }

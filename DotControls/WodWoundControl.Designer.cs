@@ -23,10 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WodWoundControl));
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.WoundName = new System.Windows.Forms.Label();
             this.WoundPenalty = new System.Windows.Forms.Label();
-            this.WoundCheckbox = new Syndaryl.Windows.Forms.WoDWoundCheckboxButton();
+            this.WoundCheckbox = new Syndaryl.Windows.Forms.WodWoundManystateCheckbox();
             this.FlowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,7 +39,7 @@
             this.FlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowPanel.Location = new System.Drawing.Point(0, 0);
             this.FlowPanel.Name = "FlowPanel";
-            this.FlowPanel.Size = new System.Drawing.Size(204, 71);
+            this.FlowPanel.Size = new System.Drawing.Size(204, 30);
             this.FlowPanel.TabIndex = 0;
             // 
             // WoundName
@@ -47,8 +48,8 @@
             this.WoundName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.WoundName.Location = new System.Drawing.Point(3, 0);
             this.WoundName.Name = "WoundName";
-            this.WoundName.Padding = new System.Windows.Forms.Padding(3, 19, 3, 15);
-            this.WoundName.Size = new System.Drawing.Size(52, 52);
+            this.WoundName.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.WoundName.Size = new System.Drawing.Size(52, 28);
             this.WoundName.TabIndex = 0;
             this.WoundName.Text = "label1";
             this.WoundName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -59,25 +60,24 @@
             this.WoundPenalty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
             this.WoundPenalty.Location = new System.Drawing.Point(61, 0);
             this.WoundPenalty.Name = "WoundPenalty";
-            this.WoundPenalty.Padding = new System.Windows.Forms.Padding(25, 7, 25, 7);
-            this.WoundPenalty.Size = new System.Drawing.Size(66, 32);
+            this.WoundPenalty.Padding = new System.Windows.Forms.Padding(25, 5, 25, 5);
+            this.WoundPenalty.Size = new System.Drawing.Size(66, 28);
             this.WoundPenalty.TabIndex = 1;
             this.WoundPenalty.Text = "0";
             this.WoundPenalty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WoundCheckbox
             // 
-            this.WoundCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WoundCheckbox.AutoSize = true;
-            this.WoundCheckbox.Location = new System.Drawing.Point(131, 1);
-            this.WoundCheckbox.Margin = new System.Windows.Forms.Padding(1);
-            this.WoundCheckbox.MaximumSize = new System.Drawing.Size(65, 65);
-            this.WoundCheckbox.MinimumSize = new System.Drawing.Size(65, 65);
+            this.WoundCheckbox.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.WoundCheckbox.IsDefault = false;
+            this.WoundCheckbox.Location = new System.Drawing.Point(133, 3);
+            this.WoundCheckbox.MaxState = ((uint)(3u));
             this.WoundCheckbox.Name = "WoundCheckbox";
-            this.WoundCheckbox.Padding = new System.Windows.Forms.Padding(3);
-            this.WoundCheckbox.Size = new System.Drawing.Size(65, 65);
+            this.WoundCheckbox.Points = ((System.Collections.Generic.List<System.Collections.Generic.List<System.Drawing.Point>>)(resources.GetObject("WoundCheckbox.Points")));
+            this.WoundCheckbox.Size = new System.Drawing.Size(25, 25);
+            this.WoundCheckbox.State = ((uint)(0u));
             this.WoundCheckbox.TabIndex = 2;
-            this.WoundCheckbox.Click += new System.EventHandler(this.WoundCheckbox_Click);
+            this.WoundCheckbox.Text = "wodWoundManystateCheckbox1";
             // 
             // WodWoundControl
             // 
@@ -85,7 +85,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.FlowPanel);
             this.Name = "WodWoundControl";
-            this.Size = new System.Drawing.Size(204, 71);
+            this.Size = new System.Drawing.Size(204, 30);
             this.Resize += new System.EventHandler(this.WodWoundControl_Resize);
             this.FlowPanel.ResumeLayout(false);
             this.FlowPanel.PerformLayout();
@@ -98,7 +98,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowPanel;
         private System.Windows.Forms.Label WoundName;
         private System.Windows.Forms.Label WoundPenalty;
-        private WoDWoundCheckboxButton WoundCheckbox;
+        private WodWoundManystateCheckbox WoundCheckbox;
 
 
     }

@@ -9,11 +9,13 @@ using System.Windows.Forms;
 
 namespace Syndaryl.Windows.Forms {
     public partial class ResizeableManyStateCheckbox : Control, IButtonControl {
+        #region Properties
         public uint State { get; set; }
         public uint MaxState { get; set; }
+
         public bool IsDefault { get; set; }
 
-        public Rectangle BoxRectangle {
+        protected Rectangle BoxRectangle {
             get {
                 Rectangle R = ClientRectangle;
                 R.Inflate(new Size(-2, -2));
@@ -21,15 +23,19 @@ namespace Syndaryl.Windows.Forms {
             }
         }
 
-        private ImageList Images { get; set; }    
+        protected ImageList Images { get; set; }
+
+        public List<List<Point>> Points { get; set; } 
         
         private DialogResult myDialogResult;
-        private Pen drawPen;
+        protected Pen drawPen;
 
+        #endregion Properties
 
         public ResizeableManyStateCheckbox() : base() {
             Images = new ImageList();
             drawPen = new Pen(System.Drawing.Brushes.Black, 4);
+            Points = new List<List<Point>>();
         }
 
         public DialogResult DialogResult {
@@ -47,8 +53,9 @@ namespace Syndaryl.Windows.Forms {
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             using (Graphics g = e.Graphics) {
-                g.DrawLine(Pens.Blue, this.Left, this.Top, this.Right, this.Bottom);
                 g.DrawRectangle(drawPen, this.BoxRectangle);
+                if (Points.Count > (int)State && Points[(int)State].Count > 0)
+                    g.DrawPolygon(drawPen, Points[(int)State].ToArray());
             }
         }
 
