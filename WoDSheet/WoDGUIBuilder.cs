@@ -176,16 +176,19 @@ namespace Games.RPG.WoDSheet {
                 Penalty.AutoSize = true;
             }
 
-            AddWoundCheckbox(location, woundRating);
+            AddWoundCheckbox(holder, woundRating);
 
             holder.ResumeLayout();
         }
 
         private static WoDWoundCheckboxButton AddWoundCheckbox(FlowLayoutPanel location, WoundRating woundRating) {
-            WoDWoundCheckboxButton Wound = new WoDWoundCheckboxButton();
+            WoDWoundCheckboxButton Wound = new WoDWoundCheckboxButton(woundRating.WoundState);
             location.Controls.Add(Wound);
             Wound.WoundUpdate += woundRating.Wound_Update;
-            Wound.AutoSize = true;
+            //Wound.AutoSize = true;
+            Wound.Width = 25;
+            Wound.Height = 25;
+            Wound.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             return Wound;
         }
         private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {

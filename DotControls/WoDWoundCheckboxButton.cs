@@ -19,6 +19,10 @@ namespace Syndaryl.Windows.Forms {
             InitializeComponent();
         }
 
+        public WoDWoundCheckboxButton(WoundStates woundState) {
+            WoundState = woundState;
+        }
+
         private void WoundButton_MouseClick(object sender, MouseEventArgs e) {
             RotateWoundState();
         }
@@ -37,6 +41,7 @@ namespace Syndaryl.Windows.Forms {
 
         #region Events
         public event EventHandler<WoundStateChangeEventArgs> WoundUpdate;
+        
         private void RaiseUpdate(WoundStates State) {
             EventHandler<WoundStateChangeEventArgs> handler = WoundUpdate;
             if (handler != null) {
