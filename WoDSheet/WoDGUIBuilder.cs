@@ -10,19 +10,18 @@ using Syndaryl.Windows.Forms;
 
 namespace Games.RPG.WoDSheet {
     class WoDGUIBuilder {
-        internal static FlowLayoutPanel Build(WoDCharacter Character, FlowLayoutPanel root) {
+        internal static TableLayoutPanel Build(WoDCharacter Character, TableLayoutPanel root) {
             if (root == null)
-                root = new FlowLayoutPanel();
+                root = new TableLayoutPanel();
             else
                 root.Controls.Clear();
 
             root.SuspendLayout();
-            root.FlowDirection = FlowDirection.TopDown;
 
             AddBanner(Character, root);
 
             foreach (TraitGroup item in Character.TraitGroups) {
-                FlowLayoutPanel p = MakePrimarySection(item, root);
+                TableLayoutPanel p = MakePrimarySection(item, root);
             }
 
             root.ResumeLayout();
@@ -38,14 +37,14 @@ namespace Games.RPG.WoDSheet {
             displayForm.Refresh();
         }
 
-        private static FlowLayoutPanel MakePrimarySection(TraitGroup group, Panel parent) {
-            FlowLayoutPanel PrimaryPanel;
-            PrimaryPanel = NewFlowPanel(parent, parent.Width);
+        private static TableLayoutPanel MakePrimarySection(TraitGroup group, Panel parent) {
+            TableLayoutPanel PrimaryPanel;
+            PrimaryPanel = NewPanel(parent, parent.Width);
             PrimaryPanel.SuspendLayout();
             PrimaryPanel.Width = NiceWidth(parent, PrimaryPanel);
             AddLabel(group.Name, PrimaryPanel, true);
             if (group.ChildGroups.Count > 0) {
-                FlowLayoutPanel ChildHolder = MakeChildPanels(group, PrimaryPanel);
+                TableLayoutPanel ChildHolder = MakeChildPanels(group, PrimaryPanel);
                 ChildHolder.Width = ChildHolder.PreferredSize.Width;
                 //ChildHolder.Width = NiceWidth(parent, ChildHolder) - 30;
                 ChildHolder.Height = ChildHolder.PreferredSize.Height;
@@ -58,14 +57,13 @@ namespace Games.RPG.WoDSheet {
             PrimaryPanel.ResumeLayout();
             return PrimaryPanel;
         }
-        private static FlowLayoutPanel MakeSection(TraitGroup group, Panel parent) {
-            FlowLayoutPanel ChildItems;
+        private static TableLayoutPanel MakeSection(TraitGroup group, Panel parent) {
+            TableLayoutPanel ChildItems;
             FlowDirection direction;
             Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
 
-            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight|| direction == FlowDirection.RightToLeft ) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            ChildItems = NewPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight|| direction == FlowDirection.RightToLeft ) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
 
-            ChildItems.FlowDirection = direction;
             ChildItems.SuspendLayout();
 
             AddLabel(group.Name, ChildItems, true);
@@ -82,8 +80,8 @@ namespace Games.RPG.WoDSheet {
             return ChildItems;
         }
 
-        private static FlowLayoutPanel NewFlowPanel(Panel location, int width) {
-            FlowLayoutPanel flow = new FlowLayoutPanel();
+        private static TableLayoutPanel NewPanel(Panel location, int width) {
+            TableLayoutPanel flow = new TableLayoutPanel();
             flow.SuspendLayout();
             location.Controls.Add(flow);
             flow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -93,13 +91,11 @@ namespace Games.RPG.WoDSheet {
             flow.AutoScroll = true;
             //parent.AutoSize = true;
             flow.AutoScroll = true;
-            flow.WrapContents = false;
             flow.ResumeLayout();
             return flow;
         }
 
-        private static void MakeChildTraits(TraitGroup group, FlowLayoutPanel location) {
-            location.FlowDirection = FlowDirection.TopDown;
+        private static void MakeChildTraits(TraitGroup group, TableLayoutPanel location) {
             foreach (Trait item in group.Children) {
                 if (TestType<NameTextRating>(item) > -1)
                     try { AddTextSlider(location, (NameTextRating)item); } catch (Exception WoDSliderCreationException) { MessageBox.Show(WoDSliderCreationException.ToString()); }
@@ -116,14 +112,14 @@ namespace Games.RPG.WoDSheet {
             }
         }
 
-        private static void AddTextRating(FlowLayoutPanel location, UnnamedTextRating unnamedTextRating) {
+        private static void AddTextRating(TableLayoutPanel location, UnnamedTextRating unnamedTextRating) {
             WodTextSlider slider = new WodTextSlider(Specialty: unnamedTextRating.Text, Rating: unnamedTextRating.Rating);
             location.Controls.Add(slider);
             slider.OnUpdate += unnamedTextRating.boundControl_Update;
             
         }
 
-        private static void AddTextBox(FlowLayoutPanel location, TextTrait textTrait) {
+        private static void AddTextBox(TableLayoutPanel location, TextTrait textTrait) {
             TextBox Text = new TextBox();
             location.Controls.Add(Text);
             Text.Text = textTrait.Text;
@@ -132,14 +128,14 @@ namespace Games.RPG.WoDSheet {
             Text.TextChanged += textTrait.Text_TextChanged;
         }
 
-        private static void AddNamedText(FlowLayoutPanel location, NamedText namedText) {
+        private static void AddNamedText(TableLayoutPanel location, NamedText namedText) {
             LabeledTextBox Text = new LabeledTextBox(label: namedText.Name, text: namedText.Text, parent: location, bold: true);
             if (Text != null)
                 Text.OnEntryUpdate += namedText.Text_TextChanged;
 
         }
 
-        private static TextBox MakeTextBox(string namedText, FlowLayoutPanel holder, int TextWidth) {
+        private static TextBox MakeTextBox(string namedText, TableLayoutPanel holder, int TextWidth) {
             TextBox Text = new TextBox();
             holder.Controls.Add(Text);
             Text.Text = namedText;
@@ -147,19 +143,18 @@ namespace Games.RPG.WoDSheet {
             Text.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             return Text;
         }
-        private static void AddWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
+        private static void AddWoundRating(TableLayoutPanel location, WoundRating woundRating) {
             Syndaryl.Windows.Forms.WodWoundControl wound = new WodWoundControl(woundRating.Name, woundRating.WoundPenalty, (int)woundRating.WoundState);
             location.Controls.Add(wound);
             wound.Width = NiceWidth(location, wound);
             wound.OnCheck += woundRating.Wound_Update;
         }
-        private static void handrollWoundRating(FlowLayoutPanel location, WoundRating woundRating) {
-            FlowLayoutPanel holder = NewFlowPanel(location, location.Width);
+        private static void handrollWoundRating(TableLayoutPanel location, WoundRating woundRating) {
+            TableLayoutPanel holder = NewPanel(location, location.Width);
 
             holder.SuspendLayout();
             holder.BorderStyle = BorderStyle.None;
             holder.Padding = new Padding(0);
-            holder.FlowDirection = FlowDirection.LeftToRight;
 
             Label Name = AddLabel(woundRating.Name, holder, false);
             if (Name != null) {
@@ -180,7 +175,7 @@ namespace Games.RPG.WoDSheet {
             holder.ResumeLayout();
         }
 
-        private static WoDWoundCheckboxButton AddWoundCheckbox(FlowLayoutPanel location, WoundRating woundRating) {
+        private static WoDWoundCheckboxButton AddWoundCheckbox(TableLayoutPanel location, WoundRating woundRating) {
             WoDWoundCheckboxButton Wound = new WoDWoundCheckboxButton(woundRating.WoundState);
             location.Controls.Add(Wound);
             Wound.WoundUpdate += woundRating.Wound_Update;
@@ -190,7 +185,7 @@ namespace Games.RPG.WoDSheet {
             Wound.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             return Wound;
         }
-        private static void AddTextSlider(FlowLayoutPanel location, NameTextRating item) {
+        private static void AddTextSlider(TableLayoutPanel location, NameTextRating item) {
             WodNameSpecialtySlider textSlider = new WodNameSpecialtySlider(
                 item.Name,
                 Specialty: item.Text,
@@ -199,18 +194,15 @@ namespace Games.RPG.WoDSheet {
             textSlider.OnUpdate += item.boundControl_Update;
         }
 
-        private static FlowLayoutPanel MakeChildPanels(TraitGroup group, FlowLayoutPanel parent) {
-            parent.FlowDirection = FlowDirection.TopDown;
-            FlowLayoutPanel ChildItems;
+        private static TableLayoutPanel MakeChildPanels(TraitGroup group, TableLayoutPanel parent) {
+            TableLayoutPanel ChildItems;
             FlowDirection direction;
             Enum.TryParse<FlowDirection>(group.Orientation, true, out direction);
-            ChildItems = NewFlowPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight || direction == FlowDirection.RightToLeft) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
+            ChildItems = NewPanel(parent, group.ChildGroups.Count > 0 && (direction == FlowDirection.LeftToRight || direction == FlowDirection.RightToLeft) ? (int)(parent.Width / group.ChildGroups.Count) : parent.Width);
             ChildItems.SuspendLayout();
 
-            ChildItems.FlowDirection = direction;
-
             foreach (TraitGroup item in group.ChildGroups) {
-                FlowLayoutPanel p = MakeSection(item, ChildItems);
+                TableLayoutPanel p = MakeSection(item, ChildItems);
             }
 
             ChildItems.ResumeLayout();
@@ -274,7 +266,7 @@ namespace Games.RPG.WoDSheet {
             return newWidth;
         }
 
-        private static void AddName(WoDCharacter Character, FlowLayoutPanel result) {
+        private static void AddName(WoDCharacter Character, TableLayoutPanel result) {
             try {
                 AddLabel(Character.Name, result, true);
             } catch (Exception LabelCreationException) {
@@ -282,7 +274,7 @@ namespace Games.RPG.WoDSheet {
             }
         }
 
-        private static void AddBanner(WoDCharacter Character, FlowLayoutPanel parent) {
+        private static void AddBanner(WoDCharacter Character, TableLayoutPanel parent) {
             try {
                 //AddName(Character, parent);
                 Bitmap BannerGraphic = new Bitmap(Character.Graphic);

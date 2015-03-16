@@ -47,7 +47,7 @@
             this.TestCharacterButton = new System.Windows.Forms.ToolStripButton();
             this.openCharacter = new System.Windows.Forms.OpenFileDialog();
             this.saveCharacter = new System.Windows.Forms.SaveFileDialog();
-            this.WodFlowRoot = new System.Windows.Forms.FlowLayoutPanel();
+            this.WodFlowRoot = new System.Windows.Forms.TableLayoutPanel();
             this.StatusBar.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -216,16 +216,15 @@
             // 
             // WodFlowRoot
             // 
-            this.WodFlowRoot.AutoScroll = true;
-            this.WodFlowRoot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.WodFlowRoot.ColumnCount = 1;
+            this.WodFlowRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.WodFlowRoot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WodFlowRoot.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.WodFlowRoot.Location = new System.Drawing.Point(0, 25);
-            this.WodFlowRoot.Margin = new System.Windows.Forms.Padding(4);
             this.WodFlowRoot.Name = "WodFlowRoot";
+            this.WodFlowRoot.RowCount = 1;
+            this.WodFlowRoot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.WodFlowRoot.Size = new System.Drawing.Size(1472, 680);
             this.WodFlowRoot.TabIndex = 2;
-            this.WodFlowRoot.WrapContents = false;
             // 
             // WoDCharEditor
             // 
@@ -272,7 +271,7 @@
         private System.Windows.Forms.ToolStripButton TestCharacterButton;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripProgressBar StatusProgress;
-        private System.Windows.Forms.FlowLayoutPanel WodFlowRoot;
+        private System.Windows.Forms.TableLayoutPanel WodFlowRoot;
 
     }
 }
