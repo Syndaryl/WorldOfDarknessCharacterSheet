@@ -72,7 +72,7 @@ namespace Games.RPG.WoDSheet
             }
         }
 
-        private void resizeableManyStateCheckbox1_Click(object sender, EventArgs e) {
+        private void rollToolStripButton_Click(object sender, EventArgs e) {
 
         }
     }
