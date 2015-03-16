@@ -22,7 +22,7 @@ namespace Syndaryl.Windows.Forms.Extensions {
             return new Point((0 + @this.Width) / 2, @this.Height);
         }
         public static Point TopCenter(this Control @this) {
-            return new Point((0 + @this.Width) / 2, @this.Height);
+            return new Point((0 + @this.Width) / 2, 0);
         }
         public static Point LeftCenter(this Control @this) {
             return new Point(0, (0 + @this.Height) / 2);

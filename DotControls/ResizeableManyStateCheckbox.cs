@@ -56,7 +56,7 @@ namespace Syndaryl.Windows.Forms {
         }
 
         protected override void OnPaint(PaintEventArgs e) {
-            //base.OnPaint(e);
+            base.OnPaint(e);
             using (Graphics g = e.Graphics) {
                 g.DrawRectangle(drawPen, this.BoxRectangle);
                 if (Points.Count > (int)State && Points[(int)State].Count > 0) {

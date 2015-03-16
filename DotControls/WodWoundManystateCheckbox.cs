@@ -10,15 +10,15 @@ namespace Syndaryl.Windows.Forms {
     public class WodWoundManystateCheckbox : ResizeableManyStateCheckbox {
         public WodWoundManystateCheckbox()
             : base() {
-                MaxState = 3;
-                State = 0;
-                for (int i = 0; i <= MaxState; i++) {
-                    Points.Add( new List<Point>());
-                }
-                RegeneratePoints();
+            MaxState = 3;
+            State = 0;
+            for (int i = 0; i <= MaxState; i++) {
+                Points.Add( new List<Point>());
+            }
+            RegeneratePoints();
         }
 
-        private void RegeneratePoints() {
+        public void RegeneratePoints() {
             for (int i = 0; i <= MaxState; i++) {
                 Points[i].Clear();
             }
@@ -39,6 +39,7 @@ namespace Syndaryl.Windows.Forms {
             Points[3].Add(this.BottomLeft());
             Points[3].Add(this.LeftCenter());
             Points[3].Add(this.RightCenter());
+            Points[3].Add(this.TopRight());
         }
 
         protected override void OnResize(EventArgs e) {
